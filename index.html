@@ -100,6 +100,16 @@
   .btn-ghost:hover { border-color: var(--gold-light); color: var(--gold-light); }
   .btn-block { width: 100%; }
 
+  /* ── CREDIBILITY BAR ── */
+  .credibility-bar {
+    background: var(--navy-deep);
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    text-align: center;
+    padding: 8px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
   /* ── NAV ── */
   nav {
     position: sticky; top: 0; z-index: 100;
@@ -238,6 +248,31 @@
     max-width: 190px; line-height: 1.35;
   }
 
+  /* ── VÍDEO ── */
+  .video-section { background: var(--navy); }
+  .video-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+  .video-eyebrow {
+    font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--gold-light);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .video-wrapper {
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  #video-placeholder {
+    width: 100%; height: 100%;
+    background: #0F1929;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px;
+  }
+  .video-placeholder-text { font-size: 14px; color: var(--text-secondary); }
+
   /* ── PROBLEMA ── */
   .problema { padding: 110px 48px; background: var(--navy-deep); }
   .problema-grid {
@@ -315,6 +350,9 @@
   .dif-example .to { color: var(--gold-light); }
   .dif-example strong { color: var(--white); font-weight: 600; }
 
+  /* ── CREDIBILIDADE ── */
+  .credibilidade { padding: 110px 48px; background: var(--navy); }
+
   /* ── DEPOIMENTOS ── */
   .depoimentos { padding: 110px 48px; background: var(--navy-deep); }
   .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1120px; margin: 0 auto; }
@@ -371,7 +409,8 @@
       radial-gradient(ellipse 700px 400px at 50% 0%, rgba(184,150,46,0.12), transparent 65%),
       var(--navy-deep);
   }
-  .cta-final h2 { font-size: clamp(30px, 3.6vw, 48px); line-height: 1.2; max-width: 680px; margin: 0 auto 36px; }
+  .cta-final h2 { font-size: clamp(30px, 3.6vw, 48px); line-height: 1.2; max-width: 680px; margin: 0 auto 24px; }
+  .cta-final .section-sub { margin: 0 auto 36px; }
   .cta-final .hero-note { justify-content: center; margin-top: 22px; }
 
   /* ── FOOTER ── */
@@ -406,11 +445,12 @@
     .dif-example { justify-self: flex-start; }
   }
   @media (max-width: 640px) {
-    .wrap, nav, .hero, .problema, .funcionalidades, .como-funciona, .diferenciais, .depoimentos, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
+    .wrap, nav, .hero, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .depoimentos, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
     nav { padding-top: 0; padding-bottom: 0; }
     .nav-links { display: none; }
     .hero { padding-top: 48px; padding-bottom: 72px; }
-    .problema, .funcionalidades, .como-funciona, .diferenciais, .depoimentos, .preco { padding-top: 72px; padding-bottom: 72px; }
+    .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .depoimentos, .preco { padding-top: 72px; padding-bottom: 72px; }
+    .video-container { padding: 40px 16px; }
     .cta-final { padding-top: 88px; padding-bottom: 88px; }
     .func-grid { grid-template-columns: 1fr; }
     .doc-float-badge { display: none; }
@@ -422,6 +462,9 @@
 </style>
 </head>
 <body>
+
+<!-- CREDIBILITY BAR -->
+<div class="credibility-bar">Desenvolvido dentro de um escritório contábil com mais de 35 anos de experiência societária</div>
 
 <!-- NAV -->
 <nav>
@@ -441,13 +484,13 @@
   <div class="hero-grid">
     <div>
       <div class="hero-eyebrow">Para escritórios contábeis e advocatícios</div>
-      <h1>Contratos societários com <em>precisão jurídica.</em> Em minutos.</h1>
-      <p class="lead">Geração automática de contratos de abertura, alteração e encerramento — com gênero, número e cláusulas de conselho de classe corretos em cada documento, e o contrato consolidado sempre atualizado.</p>
+      <h1>O departamento societário do seu escritório, funcionando <em>no nível que seus clientes exigem.</em></h1>
+      <p class="lead">O Atos Societários é a única plataforma que lê o CNAE da empresa, identifica automaticamente quais cláusulas são obrigatórias — Junta Comercial, OAB, CRC, CRM, CREA e outros conselhos — e entrega o documento pronto, próprio e formatado. Sem erros, sem exigências, sem retrabalho.</p>
       <div class="hero-ctas">
-        <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Testar grátis por 7 dias</a>
+        <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Começar grátis por 7 dias</a>
         <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
       </div>
-      <p class="hero-note">Sem cartão de crédito · Cancele quando quiser</p>
+      <p class="hero-note">Sem cartão de crédito · Cancele quando quiser · Desenvolvido por quem vive a rotina societária</p>
     </div>
     <div class="hero-visual">
       <div class="doc-float-badge">✓ Nos moldes da Junta Comercial</div>
@@ -482,34 +525,57 @@
   </div>
 </section>
 
+<!-- VÍDEO -->
+<section class="video-section">
+  <div class="video-container">
+    <div class="video-eyebrow">Veja como funciona em 90 segundos</div>
+    <div class="video-wrapper">
+      <!-- VÍDEO: substituir div#video-placeholder por <iframe src="URL" frameborder="0" allowfullscreen style="width:100%;height:100%"> quando disponível -->
+      <div id="video-placeholder">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="32" fill="url(#video-play-gradient)" />
+          <path d="M26 20L46 32L26 44V20Z" fill="#FFFFFF" />
+          <defs>
+            <linearGradient id="video-play-gradient" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0" style="stop-color:#D9BC6F" />
+              <stop offset="1" style="stop-color:#B8962E" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <p class="video-placeholder-text">Vídeo em breve</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROBLEMA -->
 <section class="problema">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">O problema</div>
-      <h2 class="section-title">Como é hoje sem o ATOS&nbsp;Societários</h2>
-      <p class="section-sub">Cada contrato feito manualmente custa tempo e abre risco de devolução no registro.</p>
+      <h2 class="section-title">O Word não é o problema. O problema é o que acontece quando o contrato está errado.</h2>
+      <p class="section-sub">Cada erro em um ato societário tem um custo real: taxa de registro, prazo perdido e um cliente que não entende por que demorou.</p>
     </div>
     <div class="problema-grid">
       <div class="problema-card">
         <div class="problema-num">01</div>
-        <h3>Contrato genérico, Junta rejeita</h3>
-        <p>Modelo pronto do Word não segue o padrão da Junta Comercial do seu estado. Cada exigência fora do molde vira devolução e mais um dia de espera.</p>
+        <h3>O Word não avisa quando você erra</h3>
+        <p>Erro de digitação no nome do sócio. Participação societária que não fecha. Cláusula obrigatória que ficou de fora. No Word, qualquer deslize passa despercebido — e só aparece quando a Junta devolve o processo.</p>
       </div>
       <div class="problema-card">
         <div class="problema-num">02</div>
-        <h3>Gênero e número errados</h3>
-        <p>"O sócio" quando é sócia, "as partes resolvem" quando é sócio único — detalhes que exigem revisão manual em todo contrato.</p>
+        <h3>Cada alteração é uma armadilha</h3>
+        <p>Você faz a 4ª alteração, mas o contrato consolidado ainda reflete a 2ª. Cruzar dados de três documentos diferentes à mão, sem perder nenhum detalhe, é uma tarefa que consome horas e ainda assim gera erros. E o cliente não quer saber de "processo" — ele quer o documento pronto.</p>
       </div>
       <div class="problema-card">
         <div class="problema-num">03</div>
-        <h3>Sem cláusula do conselho de classe</h3>
-        <p>CNAE de atividade regulamentada exige cláusula específica da OAB, CRC, CRM ou CREA — e o modelo genérico simplesmente não tem.</p>
+        <h3>A Junta registrou. O Conselho indeferiu.</h3>
+        <p>O contrato passou na Junta Comercial. Mas a atividade exigia uma cláusula específica da OAB, do CRC ou do CRM — e ela não estava lá. Resultado: nova alteração contratual, nova taxa de registro, novo prazo, cliente furioso e a credibilidade do seu escritório em xeque. Tudo por uma cláusula que o sistema deveria ter inserido automaticamente.</p>
       </div>
       <div class="problema-card">
         <div class="problema-num">04</div>
-        <h3>Horas perdidas em cada alteração</h3>
-        <p>Toda alteração contratual significa reescrever o contrato inteiro à mão e conferir se nada ficou desatualizado.</p>
+        <h3>Você não consegue tirar o societário da sua cabeça</h3>
+        <p>Treinar alguém para fazer contratos societários com qualidade leva meses. Cada colaborador novo repete os mesmos erros. Você acaba revisando tudo sozinho — porque o risco de errar é alto demais para confiar sem conferir. O departamento societário vira um gargalo que só você consegue resolver.</p>
       </div>
     </div>
   </div>
@@ -520,39 +586,39 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">A solução</div>
-      <h2 class="section-title">Tudo que um contrato societário precisa</h2>
-      <p class="section-sub">Do primeiro rascunho ao documento assinado, sem sair da plataforma.</p>
+      <h2 class="section-title">O sistema que lê o CNAE e sabe exatamente o que o contrato precisa ter.</h2>
+      <p class="section-sub">Não é um modelo preenchível. É uma plataforma inteligente que entende o tipo de empresa, o perfil dos sócios e a atividade exercida — e monta o documento certo, do jeito certo, para o órgão certo.</p>
     </div>
     <div class="func-grid">
       <div class="func-card">
         <div class="func-index">01</div>
-        <h3>Flexão automática de gênero e número</h3>
-        <p>O contrato usa "sócia", "sócio" ou "sócios" conforme quem está no quadro societário — sem revisão manual.</p>
+        <h3>O sistema sabe o que cada CNAE exige</h3>
+        <p>Inseriu um CNAE regulamentado? O Atos Societários identifica automaticamente se a atividade exige registro na OAB, CRC, CRM, CREA, CRO, CRMV ou outro conselho — e insere a cláusula obrigatória no lugar certo, com a redação exigida pelo respectivo órgão. Nada faltando. Nada errado.</p>
       </div>
       <div class="func-card">
         <div class="func-index">02</div>
-        <h3>CNAE e conselho de classe</h3>
-        <p>O sistema identifica quando o CNAE exige registro em OAB, CRC, CRM, CREA, CRO, CRMV ou outro conselho, e monta a cláusula certa.</p>
+        <h3>"A sócia", "o sócio", "os sócios" — sempre certo</h3>
+        <p>O sistema flexiona automaticamente todo o texto do contrato conforme o gênero e o número dos sócios. Sem revisão manual. Sem "o sócio" quando é mulher. Sem "as partes resolvem" em um contrato de sócio único.</p>
       </div>
       <div class="func-card">
         <div class="func-index">03</div>
-        <h3>Contrato consolidado automático</h3>
-        <p>A cada alteração, o contrato completo é atualizado — sem colar trechos à mão nem perder o histórico.</p>
+        <h3>O contrato consolidado sempre atualizado</h3>
+        <p>A cada alteração registrada, o sistema gera automaticamente o contrato social consolidado. Sem cruzar documentos à mão. Sem copiar e colar cláusulas. O histórico completo fica salvo e o documento final está sempre pronto para uso.</p>
       </div>
       <div class="func-card">
         <div class="func-index">04</div>
-        <h3>Assinatura digital integrada</h3>
-        <p>Envie para assinatura direto da plataforma, com ClickSign e outros portais.</p>
+        <h3>Qualquer pessoa da equipe opera. Você só confere.</h3>
+        <p>O fluxo guiado garante que nenhuma etapa seja pulada e nenhuma cláusula seja esquecida. Você pode delegar o societário com confiança — e usar seu tempo para o que realmente exige a sua expertise.</p>
       </div>
       <div class="func-card">
         <div class="func-index">05</div>
-        <h3>Proposta de honorários profissional</h3>
-        <p>Gere uma proposta completa em minutos, com a identidade visual do seu escritório.</p>
+        <h3>Do documento à assinatura sem sair da plataforma</h3>
+        <p>Envie o contrato para assinatura digital diretamente pelo Atos Societários, com validade jurídica e rastreabilidade completa.</p>
       </div>
       <div class="func-card">
         <div class="func-index">06</div>
-        <h3>Identidade visual do escritório</h3>
-        <p>Logo, cores e dados do escritório em cada documento entregue ao cliente.</p>
+        <h3>Documento com a cara do seu escritório</h3>
+        <p>Logo, cores e dados do escritório em cada documento entregue ao cliente. Proposta de honorários, contrato social, alteração — tudo com a identidade visual que você construiu.</p>
       </div>
     </div>
   </div>
@@ -563,24 +629,24 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Simples assim</div>
-      <h2 class="section-title">Do zero ao contrato em minutos</h2>
-      <p class="section-sub">Sem treinamento, sem manual. Qualquer pessoa da equipe opera em poucos minutos.</p>
+      <h2 class="section-title">Tão simples que sua equipe não precisa de treinamento</h2>
+      <p class="section-sub">Um fluxo criado por quem tem mais de 35 anos de rotina societária. Cada passo foi pensado para eliminar erros antes que eles aconteçam.</p>
     </div>
     <div class="passos">
       <div class="passo">
         <div class="passo-num">1</div>
-        <h3>Cadastre o cliente</h3>
-        <p>Busque a empresa pelo CNPJ. Os dados vêm preenchidos automaticamente no contrato.</p>
+        <h3>Informe o CNPJ</h3>
+        <p>Digite o CNPJ e o sistema preenche automaticamente os dados da empresa, dos sócios e da atividade exercida.</p>
       </div>
       <div class="passo">
         <div class="passo-num">2</div>
-        <h3>Escolha o tipo</h3>
-        <p>Abertura, alteração ou encerramento. O sistema guia o preenchimento conforme o tipo escolhido.</p>
+        <h3>Escolha o ato</h3>
+        <p>Abertura, alteração ou distrato. O sistema guia o preenchimento e já identifica quais cláusulas são obrigatórias para aquele tipo de empresa e atividade.</p>
       </div>
       <div class="passo">
         <div class="passo-num">3</div>
-        <h3>Gere, assine e entregue</h3>
-        <p>Documento pronto com a identidade do escritório. Envie para assinatura digital sem sair da plataforma.</p>
+        <h3>Receba o documento pronto</h3>
+        <p>O contrato sai formatado, com as cláusulas certas, a concordância correta e a identidade do seu escritório. Pronto para assinar e registrar.</p>
       </div>
     </div>
   </div>
@@ -613,12 +679,22 @@
   </div>
 </section>
 
+<!-- CREDIBILIDADE -->
+<section class="credibilidade">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title">Desenvolvido dentro de um escritório contábil. Não em uma startup.</h2>
+      <p class="section-sub">O Atos Societários nasceu de mais de 35 anos de prática societária real. Cada funcionalidade foi criada para resolver um problema que a equipe do escritório enfrentava na rotina — não um problema imaginado em uma sala de reunião. É por isso que o sistema entende o que os conselhos de classe exigem, o que a Junta Comercial devolve e o que o cliente não quer esperar.</p>
+    </div>
+  </div>
+</section>
+
 <!-- DEPOIMENTOS -->
 <section class="depoimentos">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Quem usa</div>
-      <h2 class="section-title">O que dizem sobre o ATOS&nbsp;Societários</h2>
+      <h2 class="section-title">Escritórios que pararam de perder tempo com retrabalho societário</h2>
     </div>
     <div class="dep-grid">
       <div class="dep-card">
@@ -663,24 +739,23 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Preço simples</div>
-      <h2 class="section-title">Um plano. Tudo incluído.</h2>
-      <p class="section-sub">Sem surpresas, sem funcionalidades bloqueadas, sem taxa de setup.</p>
+      <h2 class="section-title">Um plano. Tudo liberado. Sem surpresas.</h2>
+      <p class="section-sub">Sem taxa de setup, sem funcionalidades bloqueadas, sem fidelidade. Assine, use e cancele quando quiser.</p>
     </div>
     <div class="preco-card">
-      <div class="preco-eyebrow">Plano profissional</div>
+      <div class="preco-eyebrow">Plano Profissional</div>
       <div class="preco-valor">R$ 197<span>/mês</span></div>
       <p class="preco-periodo">Cobrança mensal · 7 dias grátis, sem cartão de crédito</p>
       <ul class="preco-lista">
-        <li>Contratos ilimitados de abertura, alteração e encerramento</li>
-        <li>Flexão automática de gênero e número</li>
-        <li>CNAE inteligente com cláusulas de conselho de classe</li>
-        <li>Contrato consolidado automático a cada alteração</li>
-        <li>Assinatura digital integrada — ClickSign e outros portais</li>
+        <li>Contratos ilimitados (Abertura, Alteração, Distrato)</li>
+        <li>Inteligência de CNAE — cláusulas automáticas por conselho de classe</li>
+        <li>Concordância automática de gênero e número</li>
+        <li>Contrato consolidado gerado a cada alteração</li>
+        <li>Assinatura digital integrada</li>
         <li>Proposta de honorários com identidade visual do escritório</li>
-        <li>Contrato de prestação de serviços nos padrões do conselho de classe</li>
-        <li>Suporte via e-mail</li>
+        <li>Suporte especializado</li>
       </ul>
-      <a href="https://app.useato.com.br/cadastro" class="btn btn-gold btn-block">Começar agora</a>
+      <a href="https://app.useato.com.br/cadastro" class="btn btn-gold btn-block">Iniciar teste de 7 dias grátis</a>
       <p class="preco-trial">Cancele quando quiser. Sem fidelidade.</p>
     </div>
   </div>
@@ -688,8 +763,9 @@
 
 <!-- CTA FINAL -->
 <section class="cta-final">
-  <h2>Seu escritório merece contratos no nível que seus clientes esperam.</h2>
-  <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Testar grátis por 7 dias</a>
+  <h2>Seu escritório tem expertise de 35 anos. Agora tem a tecnologia que combina com ela.</h2>
+  <p class="section-sub">Pare de perder horas com retrabalho que um sistema resolve em segundos. Seu cliente não quer esperar — e você não precisa mais fazer ele esperar.</p>
+  <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Testar grátis agora</a>
   <p class="hero-note">Sem cartão · 7 dias grátis · Cancele quando quiser</p>
 </section>
 
