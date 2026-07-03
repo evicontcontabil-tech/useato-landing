@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ATOS Societários — Gestão Documental para Escritórios Contábeis</title>
-<meta name="description" content="Geração automática de contratos societários, propostas de honorários e assinatura digital. Desenvolvido por contadores e advogados com 35 anos de experiência." />
+<title>ATOS Societários — Contratos societários com precisão jurídica</title>
+<meta name="description" content="Geração automática de contratos de abertura, alteração e encerramento societário, com gênero, número e cláusulas de conselho de classe corretos. Para escritórios contábeis e advocatícios empresariais." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/atos-favicon-32x32.png" />
 <link rel="apple-touch-icon" href="/atos-apple-touch-180.png" />
@@ -15,387 +15,409 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --azul-navy: #1A2744;
-    --azul-navy-escuro: #152035;
-    --dourado: #C9A84C;
-    --dourado-claro: #E8D5A3;
-    --cinza-escuro: #111111;
-    --cinza: #444444;
-    --cinza-claro: #F5F5F5;
-    --borda: #E5E5E5;
-    --branco: #FFFFFF;
+    --navy-deep: #121C33;
+    --navy: #1B2A4A;
+    --navy-elevated: #23345C;
+    --navy-elevated-2: #2C4070;
+    --gold: #B8962E;
+    --gold-light: #D9BC6F;
+    --gold-dim: rgba(184, 150, 46, 0.16);
+    --white: #FFFFFF;
+    --text-secondary: #94A3B8;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: var(--cinza-escuro);
+    font-family: var(--sans);
+    background: var(--navy);
+    color: var(--white);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
+
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  ::selection { background: var(--gold); color: var(--navy-deep); }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  .eyebrow {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 18px;
+  }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; }
+
+  .section-title {
+    font-size: clamp(28px, 3.2vw, 44px);
+    line-height: 1.18;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-family: var(--sans);
+    font-size: 17px; color: var(--text-secondary);
+    max-width: 560px; line-height: 1.7;
+  }
+  .section-head { max-width: 640px; margin: 0 auto 56px; text-align: center; }
+  .section-head .section-sub { margin: 0 auto; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 48px; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--sans);
+    font-size: 15.5px; font-weight: 700;
+    padding: 15px 30px; border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn-gold {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    color: var(--navy-deep);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 12px 30px -12px rgba(184,150,46,0.55);
+  }
+  .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 16px 34px -12px rgba(184,150,46,0.7); }
+  .btn-ghost {
+    background: transparent; color: var(--white);
+    border: 1.5px solid var(--border-strong);
+  }
+  .btn-ghost:hover { border-color: var(--gold-light); color: var(--gold-light); }
+  .btn-block { width: 100%; }
 
   /* ── NAV ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--borda);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(18, 28, 51, 0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
     padding: 0 48px;
-    height: 64px;
+    height: 72px;
     display: flex; align-items: center; justify-content: space-between;
   }
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none;
-  }
-  .nav-logo-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    object-fit: contain;
-    flex-shrink: 0;
-  }
-  .nav-logo-text { font-size: 16px; font-weight: 700; color: var(--cinza-escuro); }
-  .nav-links { display: flex; align-items: center; gap: 32px; }
-  .nav-links a { font-size: 15px; color: var(--cinza); text-decoration: none; }
-  .nav-links a:hover { color: var(--azul-navy); }
-  .nav-cta {
-    background: var(--azul-navy); color: white;
-    padding: 10px 24px; border-radius: 8px;
-    font-size: 15px; font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--azul-navy-escuro); }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 40px; width: auto; border-radius: 6px; }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-links a { font-size: 14.5px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { padding: 10px 22px; font-size: 14.5px; }
 
   /* ── HERO ── */
   .hero {
-    padding: 140px 48px 100px;
-    background: linear-gradient(135deg, #fff 0%, var(--dourado-claro) 100%);
-    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 88px 48px 120px;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(184,150,46,0.14), transparent 60%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
   }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--dourado-claro);
-    border: 1px solid var(--dourado);
-    color: var(--azul-navy);
-    font-size: 13px; font-weight: 600;
-    padding: 6px 16px; border-radius: 100px;
-    margin-bottom: 28px;
+  .hero-grid {
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px; align-items: center;
   }
-  .hero-badge::before { content: "★"; }
+  .hero-eyebrow {
+    font-size: 12.5px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 22px;
+  }
   .hero h1 {
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 800;
+    font-size: clamp(36px, 4.6vw, 60px);
     line-height: 1.1;
-    color: var(--cinza-escuro);
-    max-width: 860px;
-    margin: 0 auto 24px;
+    margin-bottom: 24px;
   }
-  .hero h1 span { color: var(--dourado); }
-  .hero p {
-    font-size: 20px; color: var(--cinza);
-    max-width: 600px; margin: 0 auto 48px;
-    line-height: 1.7;
+  .hero h1 em { font-style: normal; color: var(--gold-light); }
+  .hero p.lead {
+    font-size: 18px; color: var(--text-secondary);
+    max-width: 480px; margin-bottom: 40px;
+    line-height: 1.75;
   }
-  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--azul-navy); color: white;
-    padding: 16px 36px; border-radius: 10px;
-    font-size: 16px; font-weight: 700;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.1s;
-    display: inline-block;
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+  .hero-note {
+    font-size: 13.5px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 8px;
   }
-  .btn-primary:hover { background: var(--azul-navy-escuro); transform: translateY(-1px); }
-  .btn-secondary {
-    background: white; color: var(--cinza-escuro);
-    border: 1.5px solid var(--borda);
-    padding: 16px 36px; border-radius: 10px;
-    font-size: 16px; font-weight: 600;
-    text-decoration: none;
-    transition: border-color 0.2s;
-    display: inline-block;
-  }
-  .btn-secondary:hover { border-color: var(--azul-navy); color: var(--azul-navy); }
-  .hero-note { margin-top: 20px; font-size: 14px; color: #999; }
+  .hero-note::before { content: "✓"; color: var(--gold); font-weight: 700; }
 
-  /* ── DORES ── */
-  .dores {
-    padding: 100px 48px;
-    background: var(--cinza-escuro);
-    color: white;
+  /* ── HERO VISUAL: document mock ── */
+  .hero-visual { position: relative; padding: 20px; }
+  .doc-stack {
+    position: absolute;
+    top: 34px; left: 44px; right: 4px; bottom: 4px;
+    background: var(--navy-elevated);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transform: rotate(3deg);
+    z-index: 1;
   }
-  .section-label {
+  .doc-card {
+    position: relative; z-index: 2;
+    background: linear-gradient(165deg, #24365f 0%, #1c2b4d 100%);
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 30px 30px 26px;
+    box-shadow: 0 30px 70px -20px rgba(4, 8, 20, 0.65);
+  }
+  .doc-card-head {
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 20px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .doc-mark {
+    width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    color: var(--navy-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-weight: 700; font-size: 14px;
+  }
+  .doc-card-headtext { flex: 1; min-width: 0; }
+  .doc-office { display: block; font-size: 13.5px; font-weight: 600; color: var(--white); }
+  .doc-type { display: block; font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .doc-status {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--gold-light);
+    background: var(--gold-dim);
+    border: 1px solid rgba(184,150,46,0.35);
+    padding: 5px 10px; border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .doc-clause {
+    font-family: var(--serif); font-size: 13px; font-weight: 600;
+    color: var(--gold-light); letter-spacing: 0.01em;
+    margin-bottom: 10px;
+  }
+  .doc-text {
+    font-size: 13px; color: #C3CCDC; line-height: 1.7; margin-bottom: 16px;
+  }
+  .doc-text strong { color: var(--white); font-weight: 600; }
+  .doc-skel { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.08); margin-bottom: 8px; }
+  .doc-skel.w-90 { width: 92%; }
+  .doc-skel.w-70 { width: 68%; }
+  .doc-skel.w-80 { width: 80%; margin-bottom: 18px; }
+  .doc-tags { display: flex; gap: 8px; margin-bottom: 22px; }
+  .doc-tag {
+    font-size: 11px; font-weight: 600; color: var(--gold-light);
+    border: 1px solid rgba(184,150,46,0.4);
+    padding: 3px 10px; border-radius: 100px;
+  }
+  .doc-sign {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding-top: 18px; border-top: 1px solid var(--border);
+  }
+  .doc-sign-name { font-size: 13px; font-weight: 600; color: var(--white); }
+  .doc-sign-role { display: block; font-size: 11.5px; color: var(--text-secondary); margin-top: 1px; }
+  .doc-sign-badge {
+    font-size: 11px; font-weight: 600; color: #6EE7B7;
+    display: flex; align-items: center; gap: 5px;
+    white-space: nowrap;
+  }
+  .doc-float-badge {
+    position: absolute; top: -16px; right: -10px; z-index: 3;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    color: var(--navy-deep);
     font-size: 12px; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--dourado); margin-bottom: 16px;
+    padding: 10px 16px; border-radius: 10px;
+    transform: rotate(-4deg);
+    box-shadow: 0 14px 28px -8px rgba(184,150,46,0.5);
+    max-width: 190px; line-height: 1.35;
   }
-  .dores h2, .section-title {
-    font-size: clamp(28px, 3vw, 42px);
-    font-weight: 800; line-height: 1.2;
-    margin-bottom: 16px;
-  }
-  .dores-sub {
-    font-size: 18px; color: #aaa;
-    max-width: 600px; margin-bottom: 60px;
-  }
-  .dores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 1100px; margin: 0 auto;
-  }
-  .dor-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 28px;
-    display: flex; gap: 16px;
-  }
-  .dor-icon {
-    width: 40px; height: 40px; flex-shrink: 0;
-    background: rgba(201,168,76,0.15);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-  }
-  .dor-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-  .dor-card p { font-size: 14px; color: #888; line-height: 1.6; }
 
-  /* ── ORIGEM ── */
-  .origem {
-    padding: 100px 48px;
-    background: white;
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
+  /* ── PROBLEMA ── */
+  .problema { padding: 110px 48px; background: var(--navy-deep); }
+  .problema-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px; max-width: 1120px; margin: 0 auto;
   }
-  .origem-texto .section-label { color: var(--dourado); }
-  .origem-texto h2 { color: var(--cinza-escuro); margin-bottom: 24px; }
-  .origem-texto p {
-    font-size: 17px; color: var(--cinza);
-    line-height: 1.8; margin-bottom: 20px;
+  .problema-card {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px 26px 24px;
   }
-  .origem-stats {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 24px; margin-top: 40px;
+  .problema-num {
+    font-family: var(--serif); font-size: 13px; font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 14px;
   }
-  .stat {
-    background: var(--dourado-claro);
-    border: 1px solid var(--dourado);
-    border-radius: 12px; padding: 24px;
-    text-align: center;
-  }
-  .stat-num { font-size: 42px; font-weight: 800; color: var(--azul-navy); line-height: 1; }
-  .stat-label { font-size: 13px; color: var(--cinza); margin-top: 6px; }
-  .origem-visual {
-    background: linear-gradient(135deg, var(--azul-navy) 0%, var(--azul-navy-escuro) 100%);
-    border-radius: 20px;
-    padding: 48px;
-    color: white;
-  }
-  .origem-visual h3 { font-size: 22px; font-weight: 700; margin-bottom: 32px; }
-  .origem-item {
-    display: flex; gap: 16px; margin-bottom: 24px;
-  }
-  .origem-item-num {
-    width: 32px; height: 32px; flex-shrink: 0;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700;
-  }
-  .origem-item-text h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-  .origem-item-text p { font-size: 13px; opacity: 0.8; }
+  .problema-card h3 { font-family: var(--sans); font-size: 15.5px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0; }
+  .problema-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
 
   /* ── FUNCIONALIDADES ── */
-  .funcionalidades {
-    padding: 100px 48px;
-    background: var(--cinza-claro);
-    text-align: center;
-  }
-  .funcionalidades h2 { color: var(--cinza-escuro); margin-bottom: 16px; }
-  .func-sub { font-size: 18px; color: var(--cinza); max-width: 560px; margin: 0 auto 64px; }
+  .funcionalidades { padding: 110px 48px; background: var(--navy-elevated); }
   .func-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; max-width: 1120px; margin: 0 auto;
   }
   .func-card {
-    background: white;
-    border: 1px solid var(--borda);
-    border-radius: 16px;
-    padding: 36px;
-    text-align: left;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .func-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .func-icon {
-    width: 52px; height: 52px;
-    background: var(--dourado-claro);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
     border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; margin-bottom: 20px;
+    padding: 28px;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .func-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-  .func-card p { font-size: 15px; color: var(--cinza); line-height: 1.6; }
-  .func-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-  .tag {
-    font-size: 12px; font-weight: 600;
-    background: var(--dourado-claro);
-    color: var(--azul-navy);
-    padding: 4px 12px; border-radius: 100px;
-    border: 1px solid var(--dourado);
-  }
+  .func-card:hover { border-color: var(--border-strong); background: rgba(255,255,255,0.05); }
+  .func-index { font-family: var(--serif); font-size: 13px; color: var(--gold-light); margin-bottom: 16px; }
+  .func-card h3 { font-family: var(--sans); font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0; }
+  .func-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
 
   /* ── COMO FUNCIONA ── */
-  .como-funciona {
-    padding: 100px 48px;
-    background: white;
-    text-align: center;
-  }
-  .como-funciona h2 { color: var(--cinza-escuro); margin-bottom: 16px; }
-  .cf-sub { font-size: 18px; color: var(--cinza); max-width: 560px; margin: 0 auto 64px; }
-  .passos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0; max-width: 1000px; margin: 0 auto;
-    position: relative;
-  }
-  .passo { text-align: center; padding: 0 24px; position: relative; }
+  .como-funciona { padding: 110px 48px; background: var(--navy-deep); }
+  .passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1120px; margin: 0 auto; }
+  .passo { position: relative; padding-top: 8px; }
   .passo-num {
-    width: 56px; height: 56px;
-    background: var(--azul-navy);
-    color: white;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; font-weight: 800;
-    margin: 0 auto 20px;
-    position: relative; z-index: 1;
+    font-family: var(--serif); font-size: 34px; font-weight: 600;
+    color: var(--gold); opacity: 0.9;
+    margin-bottom: 18px; line-height: 1;
   }
-  .passo h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
-  .passo p { font-size: 14px; color: var(--cinza); line-height: 1.6; }
+  .passo h3 { font-family: var(--sans); font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: 0; }
+  .passo p { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; }
+  .passo:not(:last-child)::after {
+    content: ""; position: absolute; top: 22px; left: calc(100% - 4px); width: calc(40px - 4px);
+    border-top: 1px dashed var(--border-strong);
+  }
+
+  /* ── DIFERENCIAIS ── */
+  .diferenciais { padding: 110px 48px; background: var(--navy-elevated); }
+  .dif-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+  .dif-row {
+    background: var(--navy-elevated);
+    display: grid; grid-template-columns: 200px 1fr auto;
+    gap: 24px; align-items: center;
+    padding: 26px 30px;
+  }
+  .dif-label { font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); }
+  .dif-statement { font-family: var(--serif); font-size: 18px; font-weight: 500; line-height: 1.4; }
+  .dif-example {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Source Serif 4', serif; font-size: 13px;
+    color: var(--text-secondary);
+    background: rgba(0,0,0,0.18);
+    border: 1px solid var(--border);
+    padding: 8px 14px; border-radius: 8px;
+    white-space: nowrap;
+  }
+  .dif-example .to { color: var(--gold-light); }
+  .dif-example strong { color: var(--white); font-weight: 600; }
+
+  /* ── DEPOIMENTOS ── */
+  .depoimentos { padding: 110px 48px; background: var(--navy-deep); }
+  .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1120px; margin: 0 auto; }
+  .dep-card {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex; flex-direction: column;
+  }
+  .dep-quote-mark { font-family: var(--serif); font-size: 40px; color: var(--gold); opacity: 0.5; line-height: 1; margin-bottom: 4px; }
+  .dep-text { font-size: 14.5px; color: #D6DCE8; line-height: 1.75; margin-bottom: 24px; flex: 1; }
+  .dep-author { display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .dep-avatar {
+    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    color: var(--navy-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-weight: 700; font-size: 14px;
+  }
+  .dep-name { font-size: 14px; font-weight: 700; }
+  .dep-role { font-size: 12.5px; color: var(--text-secondary); margin-top: 1px; }
 
   /* ── PREÇO ── */
-  .preco {
-    padding: 100px 48px;
-    background: linear-gradient(135deg, var(--cinza-escuro) 0%, #222 100%);
-    text-align: center; color: white;
-  }
-  .preco h2 { color: white; margin-bottom: 16px; }
-  .preco-sub { font-size: 18px; color: #aaa; margin-bottom: 64px; }
+  .preco { padding: 110px 48px; background: var(--navy-elevated); }
   .preco-card {
-    background: white; color: var(--cinza-escuro);
-    border-radius: 20px; padding: 48px;
-    max-width: 480px; margin: 0 auto;
+    background: linear-gradient(165deg, #24365f 0%, #1c2b4d 100%);
+    border: 1px solid var(--border-strong);
+    border-radius: 18px; padding: 44px;
+    max-width: 460px; margin: 0 auto;
     position: relative;
+    box-shadow: 0 40px 80px -30px rgba(4,8,20,0.7);
   }
-  .preco-badge-top {
-    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-    background: var(--azul-navy); color: white;
-    font-size: 13px; font-weight: 700;
-    padding: 6px 20px; border-radius: 100px;
-  }
-  .preco-label { font-size: 13px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dourado); margin-bottom: 12px; }
-  .preco-valor { font-size: 64px; font-weight: 800; color: var(--cinza-escuro); line-height: 1; }
-  .preco-valor span { font-size: 24px; font-weight: 400; color: var(--cinza); }
-  .preco-periodo { font-size: 15px; color: #999; margin-bottom: 36px; }
-  .preco-lista { list-style: none; text-align: left; margin-bottom: 36px; }
+  .preco-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; }
+  .preco-valor { font-family: var(--serif); font-size: 56px; font-weight: 600; line-height: 1; }
+  .preco-valor span { font-family: var(--sans); font-size: 18px; font-weight: 500; color: var(--text-secondary); }
+  .preco-periodo { font-size: 13.5px; color: var(--text-secondary); margin: 10px 0 30px; }
+  .preco-lista { list-style: none; margin-bottom: 30px; }
   .preco-lista li {
     display: flex; gap: 12px; align-items: flex-start;
-    font-size: 15px; color: var(--cinza);
-    padding: 10px 0; border-bottom: 1px solid var(--borda);
+    font-size: 14.5px; color: #D6DCE8;
+    padding: 11px 0; border-bottom: 1px solid var(--border);
   }
   .preco-lista li:last-child { border-bottom: none; }
-  .preco-lista li::before { content: "✓"; color: var(--dourado); font-weight: 700; flex-shrink: 0; }
-  .preco-trial { font-size: 13px; color: #999; margin-top: 16px; }
-  .garantias {
-    display: flex; justify-content: center; gap: 48px;
-    margin-top: 48px; flex-wrap: wrap;
-  }
-  .garantia { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #aaa; }
-  .garantia-icon { font-size: 20px; }
-
-  /* ── DEPOIMENTO ── */
-  .depoimento-section {
-    padding: 100px 48px;
-    background: var(--dourado-claro);
-    text-align: center;
-  }
-  .depoimento-section h2 { color: var(--cinza-escuro); margin-bottom: 60px; }
-  .depoimento-card {
-    background: white;
-    border-radius: 16px; padding: 48px;
-    max-width: 720px; margin: 0 auto;
-    box-shadow: 0 4px 40px rgba(26,39,68,0.1);
-  }
-  .depoimento-texto {
-    font-size: 20px; color: var(--cinza);
-    line-height: 1.8; margin-bottom: 32px;
-    font-style: italic;
-  }
-  .depoimento-autor { display: flex; align-items: center; gap: 16px; justify-content: center; }
-  .depoimento-avatar {
-    width: 52px; height: 52px; border-radius: 50%;
-    background: var(--azul-navy);
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 20px; font-weight: 700;
-  }
-  .depoimento-nome { font-weight: 700; font-size: 16px; }
-  .depoimento-cargo { font-size: 14px; color: #999; }
+  .preco-lista li::before { content: "✓"; color: var(--gold-light); font-weight: 700; flex-shrink: 0; }
+  .preco-trial { font-size: 13px; color: var(--text-secondary); margin-top: 16px; text-align: center; }
+  .preco-foot-note { text-align: center; font-size: 13.5px; color: var(--text-secondary); margin-top: 32px; }
 
   /* ── CTA FINAL ── */
   .cta-final {
     padding: 120px 48px;
-    background: var(--azul-navy);
-    text-align: center; color: white;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 700px 400px at 50% 0%, rgba(184,150,46,0.12), transparent 65%),
+      var(--navy-deep);
   }
-  .cta-final h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; margin-bottom: 20px; }
-  .cta-final p { font-size: 20px; opacity: 0.9; margin-bottom: 48px; max-width: 560px; margin-left: auto; margin-right: auto; }
-  .btn-branco {
-    background: white; color: var(--azul-navy);
-    padding: 18px 44px; border-radius: 10px;
-    font-size: 17px; font-weight: 700;
-    text-decoration: none; display: inline-block;
-    transition: transform 0.2s;
-  }
-  .btn-branco:hover { transform: translateY(-2px); }
-  .cta-note { margin-top: 20px; font-size: 14px; opacity: 0.75; }
+  .cta-final h2 { font-size: clamp(30px, 3.6vw, 48px); line-height: 1.2; max-width: 680px; margin: 0 auto 36px; }
+  .cta-final .hero-note { justify-content: center; margin-top: 22px; }
 
   /* ── FOOTER ── */
-  footer {
-    background: var(--cinza-escuro);
-    color: #aaa;
-    padding: 60px 48px 40px;
-  }
+  footer { background: #0F1728; padding: 64px 48px 32px; border-top: 1px solid var(--border); }
   .footer-top {
-    display: flex; justify-content: space-between;
-    align-items: flex-start; flex-wrap: wrap; gap: 40px;
-    margin-bottom: 48px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 40px;
+    max-width: 1120px; margin: 0 auto 48px;
   }
-  .footer-brand .nav-logo-text { color: white; }
-  .footer-tagline { font-size: 14px; color: #666; margin-top: 8px; max-width: 260px; }
-  .footer-links h4 { color: white; font-size: 14px; margin-bottom: 16px; }
-  .footer-links a { display: block; font-size: 14px; color: #666; text-decoration: none; margin-bottom: 10px; }
-  .footer-links a:hover { color: var(--dourado); }
+  .footer-brand img { height: 48px; width: auto; margin-bottom: 14px; }
+  .footer-tagline { font-size: 13.5px; color: var(--text-secondary); max-width: 240px; line-height: 1.6; }
+  .footer-links h4 { font-family: var(--sans); font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 16px; }
+  .footer-links a { display: block; font-size: 14px; color: #C3CCDC; text-decoration: none; margin-bottom: 11px; }
+  .footer-links a:hover { color: var(--gold-light); }
   .footer-bottom {
-    border-top: 1px solid #222;
+    max-width: 1120px; margin: 0 auto;
+    border-top: 1px solid var(--border);
     padding-top: 24px;
-    display: flex; justify-content: space-between;
-    font-size: 13px; color: #555;
-    flex-wrap: wrap; gap: 12px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    font-size: 12.5px; color: #5C6B87;
   }
 
-  /* ── RESPONSIVO ── */
-  @media (max-width: 768px) {
-    nav { padding: 0 20px; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 460px; margin: 0 auto; }
+    .func-grid { grid-template-columns: repeat(2, 1fr); }
+    .passos { grid-template-columns: 1fr; gap: 36px; }
+    .passo:not(:last-child)::after { display: none; }
+    .dep-grid { grid-template-columns: 1fr; }
+    .dif-row { grid-template-columns: 1fr; gap: 10px; }
+    .dif-example { justify-self: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .wrap, nav, .hero, .problema, .funcionalidades, .como-funciona, .diferenciais, .depoimentos, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
+    nav { padding-top: 0; padding-bottom: 0; }
     .nav-links { display: none; }
-    .hero { padding: 100px 20px 60px; }
-    .dores { padding: 60px 20px; }
-    .origem { grid-template-columns: 1fr; padding: 60px 20px; gap: 40px; }
-    .funcionalidades, .como-funciona, .preco, .cta-final { padding: 60px 20px; }
-    .depoimento-section { padding: 60px 20px; }
-    footer { padding: 40px 20px 24px; }
-    .footer-top { flex-direction: column; }
-    .garantias { gap: 24px; }
+    .hero { padding-top: 48px; padding-bottom: 72px; }
+    .problema, .funcionalidades, .como-funciona, .diferenciais, .depoimentos, .preco { padding-top: 72px; padding-bottom: 72px; }
+    .cta-final { padding-top: 88px; padding-bottom: 88px; }
+    .func-grid { grid-template-columns: 1fr; }
+    .doc-float-badge { display: none; }
+    .doc-stack { display: none; }
+    .preco-card { padding: 32px 26px; }
+    footer { padding: 48px 20px 24px; }
+    .footer-top { flex-direction: column; gap: 32px; }
   }
 </style>
 </head>
@@ -403,141 +425,91 @@
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo">
-    <img src="/atos-favicon-32x32.png" alt="ATOS Societários" class="nav-logo-icon" />
-    <span class="nav-logo-text">ATOS Societários</span>
+  <a href="/" class="nav-logo" aria-label="ATOS Societários">
+    <img src="/atos-logo-completo-azul.png" alt="ATOS Societários" />
   </a>
   <div class="nav-links">
     <a href="#funcionalidades">Funcionalidades</a>
-    <a href="#como-funciona">Como funciona</a>
     <a href="#preco">Preço</a>
     <a href="https://app.useato.com.br">Entrar</a>
   </div>
-  <a href="https://app.useato.com.br/cadastro" class="nav-cta">Começar grátis</a>
+  <a href="https://app.useato.com.br/cadastro" class="btn btn-gold nav-cta">Testar grátis</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Desenvolvido por contadores e advogados</div>
-  <h1>Pare de perder horas com <span>documentos societários</span></h1>
-  <p>O ATOS Societários automatiza a geração de contratos, alterações e distratos para escritórios contábeis — com segurança jurídica e visual profissional.</p>
-  <div class="hero-ctas">
-    <a href="https://app.useato.com.br/cadastro" class="btn-primary">Começar 7 dias grátis →</a>
-    <a href="#como-funciona" class="btn-secondary">Ver como funciona</a>
-  </div>
-  <p class="hero-note">Sem cartão de crédito · Cancele quando quiser</p>
-</section>
-
-<!-- DORES -->
-<section class="dores">
-  <div style="max-width:1100px; margin:0 auto;">
-    <div class="section-label">O problema</div>
-    <h2>O que seu escritório perde todo dia</h2>
-    <p class="dores-sub">Cada contrato feito manualmente custa tempo, cria risco jurídico e desgasta sua equipe.</p>
-    <div class="dores-grid">
-      <div class="dor-card">
-        <div class="dor-icon">⏱</div>
-        <div>
-          <h3>Horas perdidas em digitação</h3>
-          <p>Copiar dados de planilhas para o Word, formatar, revisar. Mais de 8 horas por semana desperdiçadas em tarefas mecânicas.</p>
-        </div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Para escritórios contábeis e advocatícios</div>
+      <h1>Contratos societários com <em>precisão jurídica.</em> Em minutos.</h1>
+      <p class="lead">Geração automática de contratos de abertura, alteração e encerramento — com gênero, número e cláusulas de conselho de classe corretos em cada documento, e o contrato consolidado sempre atualizado.</p>
+      <div class="hero-ctas">
+        <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Testar grátis por 7 dias</a>
+        <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
       </div>
-      <div class="dor-card">
-        <div class="dor-icon">⚠️</div>
-        <div>
-          <h3>Exigências nos órgãos de registro</h3>
-          <p>Um erro de digitação no CNPJ ou uma cláusula fora do padrão da Junta Comercial gera retrabalho e custos extras.</p>
+      <p class="hero-note">Sem cartão de crédito · Cancele quando quiser</p>
+    </div>
+    <div class="hero-visual">
+      <div class="doc-float-badge">✓ Nos moldes da Junta Comercial</div>
+      <div class="doc-stack" aria-hidden="true"></div>
+      <div class="doc-card" aria-hidden="true">
+        <div class="doc-card-head">
+          <div class="doc-mark">CN</div>
+          <div class="doc-card-headtext">
+            <span class="doc-office">Contabilidade Nascimento</span>
+            <span class="doc-type">Alteração Contratual · 3ª</span>
+          </div>
+          <span class="doc-status">Consolidado</span>
         </div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-icon">📋</div>
-        <div>
-          <h3>Cláusulas desatualizadas</h3>
-          <p>Modelos antigos no Word não acompanham as exigências dos Conselhos de Classe — OAB, CRC, CRECI, CRM, CREFITO.</p>
+        <p class="doc-clause">CLÁUSULA 4ª — DA ADMINISTRAÇÃO</p>
+        <p class="doc-text">A sociedade será administrada por <strong>Camila Rocha Andrade</strong>, sócia, que representa a empresa ativa e passivamente...</p>
+        <div class="doc-skel w-90"></div>
+        <div class="doc-skel w-70"></div>
+        <div class="doc-skel w-80"></div>
+        <div class="doc-tags">
+          <span class="doc-tag">JUCESP</span>
+          <span class="doc-tag">OAB/SP</span>
         </div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-icon">🔄</div>
-        <div>
-          <h3>Fluxo manual e fragmentado</h3>
-          <p>Gerar o contrato, converter para PDF, enviar por email, baixar, assinar, devolver. Cada etapa em uma ferramenta diferente.</p>
-        </div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-icon">👤</div>
-        <div>
-          <h3>Dificuldade em delegar</h3>
-          <p>O conhecimento fica na cabeça do sócio. Contratar ou treinar alguém para fazer contratos demora meses.</p>
-        </div>
-      </div>
-      <div class="dor-card">
-        <div class="dor-icon">🎨</div>
-        <div>
-          <h3>Falta de padrão visual</h3>
-          <p>Propostas e contratos sem identidade visual não transmitem a credibilidade que seu escritório merece.</p>
+        <div class="doc-sign">
+          <div>
+            <div class="doc-sign-name">Camila Rocha Andrade</div>
+            <span class="doc-sign-role">Sócia administradora</span>
+          </div>
+          <span class="doc-sign-badge">✓ Assinado digitalmente</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ORIGEM -->
-<section style="padding: 100px 48px; background: white;">
-  <div class="origem">
-    <div class="origem-texto">
-      <div class="section-label">Nossa história</div>
-      <h2 class="section-title">Nasceu dentro de um escritório contábil</h2>
-      <p>O ATOS Societários foi criado por uma equipe de <strong>advogados e contadores</strong> que viveu na prática as dores de abrir, alterar e encerrar empresas no Brasil todos os dias.</p>
-      <p>Com <strong>35 anos de atuação</strong> no mercado contábil, nosso escritório fundador processou milhares de contratos societários — e sabia exatamente onde o processo quebrava. A solução não veio de fora: veio de dentro.</p>
-      <p>O resultado é um software que reúne <strong>experiência contábil e jurídica</strong> real, com modelos validados pelos Conselhos de Classe e pela Junta Comercial, que qualquer pessoa da equipe consegue operar.</p>
-      <div class="origem-stats">
-        <div class="stat">
-          <div class="stat-num">35</div>
-          <div class="stat-label">Anos de experiência contábil</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Tipos de documentos gerados</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">5</div>
-          <div class="stat-label">Conselhos de classe suportados</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Plataformas de assinatura digital</div>
-        </div>
-      </div>
+<!-- PROBLEMA -->
+<section class="problema">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">O problema</div>
+      <h2 class="section-title">Como é hoje sem o ATOS&nbsp;Societários</h2>
+      <p class="section-sub">Cada contrato feito manualmente custa tempo e abre risco de devolução no registro.</p>
     </div>
-    <div class="origem-visual">
-      <h3>Por que o ATOS Societários é diferente</h3>
-      <div class="origem-item">
-        <div class="origem-item-num">1</div>
-        <div class="origem-item-text">
-          <h4>Modelos validados na prática</h4>
-          <p>Cada cláusula foi testada em registros reais na Junta Comercial e nos Conselhos de Classe.</p>
-        </div>
+    <div class="problema-grid">
+      <div class="problema-card">
+        <div class="problema-num">01</div>
+        <h3>Contrato genérico, Junta rejeita</h3>
+        <p>Modelo pronto do Word não segue o padrão da Junta Comercial do seu estado. Cada exigência fora do molde vira devolução e mais um dia de espera.</p>
       </div>
-      <div class="origem-item">
-        <div class="origem-item-num">2</div>
-        <div class="origem-item-text">
-          <h4>Desenvolvido por quem usa</h4>
-          <p>Não foi feito por uma empresa de tecnologia que nunca abriu uma empresa. Foi feito por quem abre todos os dias.</p>
-        </div>
+      <div class="problema-card">
+        <div class="problema-num">02</div>
+        <h3>Gênero e número errados</h3>
+        <p>"O sócio" quando é sócia, "as partes resolvem" quando é sócio único — detalhes que exigem revisão manual em todo contrato.</p>
       </div>
-      <div class="origem-item">
-        <div class="origem-item-num">3</div>
-        <div class="origem-item-text">
-          <h4>Identidade visual do seu escritório</h4>
-          <p>Logo, cor e dados do escritório em todos os documentos. Seus clientes veem sua marca, não a nossa.</p>
-        </div>
+      <div class="problema-card">
+        <div class="problema-num">03</div>
+        <h3>Sem cláusula do conselho de classe</h3>
+        <p>CNAE de atividade regulamentada exige cláusula específica da OAB, CRC, CRM ou CREA — e o modelo genérico simplesmente não tem.</p>
       </div>
-      <div class="origem-item">
-        <div class="origem-item-num">4</div>
-        <div class="origem-item-text">
-          <h4>Tudo em um lugar só</h4>
-          <p>Da geração à assinatura digital, sem sair da plataforma. ClickSign, D4Sign e ZapSign integrados.</p>
-        </div>
+      <div class="problema-card">
+        <div class="problema-num">04</div>
+        <h3>Horas perdidas em cada alteração</h3>
+        <p>Toda alteração contratual significa reescrever o contrato inteiro à mão e conferir se nada ficou desatualizado.</p>
       </div>
     </div>
   </div>
@@ -545,68 +517,42 @@
 
 <!-- FUNCIONALIDADES -->
 <section class="funcionalidades" id="funcionalidades">
-  <div class="section-label">O que o ATOS Societários faz</div>
-  <h2 class="section-title">Tudo que seu escritório precisa</h2>
-  <p class="func-sub">Da abertura ao encerramento de empresas, o ATOS Societários cobre todo o ciclo societário.</p>
-  <div class="func-grid">
-    <div class="func-card">
-      <div class="func-icon">🏢</div>
-      <h3>Abertura de Empresa</h3>
-      <p>Fluxo guiado para LTDA com múltiplos sócios, integralização de capital, cláusulas de administração e objeto social personalizável.</p>
-      <div class="func-tags">
-        <span class="tag">LTDA</span>
-        <span class="tag">OAB</span>
-        <span class="tag">CRECI</span>
-        <span class="tag">CRM</span>
-        <span class="tag">CREFITO</span>
-      </div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">A solução</div>
+      <h2 class="section-title">Tudo que um contrato societário precisa</h2>
+      <p class="section-sub">Do primeiro rascunho ao documento assinado, sem sair da plataforma.</p>
     </div>
-    <div class="func-card">
-      <div class="func-icon">✏️</div>
-      <h3>Alteração Contratual</h3>
-      <p>15 tipos de alteração — quadro societário, capital social, endereço, nome empresarial, administração e mais. Consolidação automática.</p>
-      <div class="func-tags">
-        <span class="tag">15 tipos</span>
-        <span class="tag">Cessão de quotas</span>
-        <span class="tag">Ingresso de sócio</span>
+    <div class="func-grid">
+      <div class="func-card">
+        <div class="func-index">01</div>
+        <h3>Flexão automática de gênero e número</h3>
+        <p>O contrato usa "sócia", "sócio" ou "sócios" conforme quem está no quadro societário — sem revisão manual.</p>
       </div>
-    </div>
-    <div class="func-card">
-      <div class="func-icon">📄</div>
-      <h3>Contratos de Prestação de Serviços</h3>
-      <p>5 modelos PSC com Quadro Resumo profissional — doméstica, sem movimento, padrão, holdings e plano de saúde. Conforme CFC 1.590/2020.</p>
-      <div class="func-tags">
-        <span class="tag">CFC 1590/2020</span>
-        <span class="tag">5 modelos</span>
+      <div class="func-card">
+        <div class="func-index">02</div>
+        <h3>CNAE e conselho de classe</h3>
+        <p>O sistema identifica quando o CNAE exige registro em OAB, CRC, CRM, CREA, CRO, CRMV ou outro conselho, e monta a cláusula certa.</p>
       </div>
-    </div>
-    <div class="func-card">
-      <div class="func-icon">💼</div>
-      <h3>Proposta de Honorários</h3>
-      <p>Propostas com identidade visual do escritório, selo de tradição, serviços incluídos, diferenciais e serviços societários com valores individuais.</p>
-      <div class="func-tags">
-        <span class="tag">Visual profissional</span>
-        <span class="tag">PDF instantâneo</span>
+      <div class="func-card">
+        <div class="func-index">03</div>
+        <h3>Contrato consolidado automático</h3>
+        <p>A cada alteração, o contrato completo é atualizado — sem colar trechos à mão nem perder o histórico.</p>
       </div>
-    </div>
-    <div class="func-card">
-      <div class="func-icon">✍️</div>
-      <h3>Assinatura Digital Integrada</h3>
-      <p>Envie para assinatura direto do sistema. Integração nativa com ClickSign, D4Sign e ZapSign — sem sair da plataforma.</p>
-      <div class="func-tags">
-        <span class="tag">ClickSign</span>
-        <span class="tag">D4Sign</span>
-        <span class="tag">ZapSign</span>
+      <div class="func-card">
+        <div class="func-index">04</div>
+        <h3>Assinatura digital integrada</h3>
+        <p>Envie para assinatura direto da plataforma, com ClickSign e outros portais.</p>
       </div>
-    </div>
-    <div class="func-card">
-      <div class="func-icon">🔚</div>
-      <h3>Distrato Social</h3>
-      <p>Encerramento de empresa com cláusulas automáticas, partilha de bens, guarda de livros e foro conforme a cidade sede.</p>
-      <div class="func-tags">
-        <span class="tag">LTDA</span>
-        <span class="tag">OAB</span>
-        <span class="tag">Automático</span>
+      <div class="func-card">
+        <div class="func-index">05</div>
+        <h3>Proposta de honorários profissional</h3>
+        <p>Gere uma proposta completa em minutos, com a identidade visual do seu escritório.</p>
+      </div>
+      <div class="func-card">
+        <div class="func-index">06</div>
+        <h3>Identidade visual do escritório</h3>
+        <p>Logo, cores e dados do escritório em cada documento entregue ao cliente.</p>
       </div>
     </div>
   </div>
@@ -614,97 +560,147 @@
 
 <!-- COMO FUNCIONA -->
 <section class="como-funciona" id="como-funciona">
-  <div class="section-label">Simples assim</div>
-  <h2 class="section-title">Do zero ao contrato em minutos</h2>
-  <p class="cf-sub">Sem treinamento, sem manual. Qualquer pessoa da equipe opera em menos de 5 minutos.</p>
-  <div class="passos">
-    <div class="passo">
-      <div class="passo-num">1</div>
-      <h3>Cadastre o cliente</h3>
-      <p>Informe os dados uma vez. O ATOS Societários preenche automaticamente em todos os documentos futuros.</p>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Simples assim</div>
+      <h2 class="section-title">Do zero ao contrato em minutos</h2>
+      <p class="section-sub">Sem treinamento, sem manual. Qualquer pessoa da equipe opera em poucos minutos.</p>
     </div>
-    <div class="passo">
-      <div class="passo-num">2</div>
-      <h3>Escolha o documento</h3>
-      <p>Abertura, alteração, PSC ou proposta. Selecione o modelo e o sistema guia o preenchimento.</p>
+    <div class="passos">
+      <div class="passo">
+        <div class="passo-num">1</div>
+        <h3>Cadastre o cliente</h3>
+        <p>Busque a empresa pelo CNPJ. Os dados vêm preenchidos automaticamente no contrato.</p>
+      </div>
+      <div class="passo">
+        <div class="passo-num">2</div>
+        <h3>Escolha o tipo</h3>
+        <p>Abertura, alteração ou encerramento. O sistema guia o preenchimento conforme o tipo escolhido.</p>
+      </div>
+      <div class="passo">
+        <div class="passo-num">3</div>
+        <h3>Gere, assine e entregue</h3>
+        <p>Documento pronto com a identidade do escritório. Envie para assinatura digital sem sair da plataforma.</p>
+      </div>
     </div>
-    <div class="passo">
-      <div class="passo-num">3</div>
-      <h3>Revise e exporte</h3>
-      <p>Visualize o documento completo com a identidade do seu escritório. Exporte em PDF ou envie para assinatura.</p>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">O que nenhum outro sistema faz</div>
+      <h2 class="section-title">Precisão que se vê no texto do contrato</h2>
     </div>
-    <div class="passo">
-      <div class="passo-num">4</div>
-      <h3>Pronto</h3>
-      <p>Documento gerado, assinado e arquivado. Seu cliente recebe, você economiza horas.</p>
+    <div class="dif-list">
+      <div class="dif-row">
+        <div class="dif-label">Gênero / número</div>
+        <div class="dif-statement">O contrato fala no feminino quando a sócia é mulher.</div>
+        <div class="dif-example"><strong>sócio</strong> <span class="to">→</span> sócia</div>
+      </div>
+      <div class="dif-row">
+        <div class="dif-label">CNAE inteligente</div>
+        <div class="dif-statement">Sabe quando o contrato precisa ir ao CRC, à OAB ou ao CRM.</div>
+        <div class="dif-example"><strong>6201-5/01</strong> <span class="to">→</span> registro CRC</div>
+      </div>
+      <div class="dif-row">
+        <div class="dif-label">Consolidação automática</div>
+        <div class="dif-statement">Cada alteração atualiza o contrato completo, sem trechos soltos.</div>
+        <div class="dif-example"><strong>3ª alteração</strong> <span class="to">→</span> contrato v4</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Quem usa</div>
+      <h2 class="section-title">O que dizem sobre o ATOS&nbsp;Societários</h2>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card">
+        <div class="dep-quote-mark">"</div>
+        <p class="dep-text">A geração automática do contrato consolidado depois de cada alteração eliminou um retrabalho que fazíamos toda semana. Hoje conferimos o documento pronto, não montamos do zero.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">MF</div>
+          <div>
+            <div class="dep-name">Marcos Vinícius Ferreira</div>
+            <div class="dep-role">Contador · Ferreira &amp; Associados, Campinas/SP</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-quote-mark">"</div>
+        <p class="dep-text">O sistema já indica quando o CNAE exige registro na OAB ou no CRC antes de eu montar a cláusula. Isso evitou pelo menos duas devoluções na Junta nos últimos meses.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">CA</div>
+          <div>
+            <div class="dep-name">Camila Rocha Andrade</div>
+            <div class="dep-role">Advogada empresarial · Curitiba/PR</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-quote-mark">"</div>
+        <p class="dep-text">Uso a proposta de honorários para fechar consultorias societárias — o documento sai com a identidade do escritório, e isso pesa na conversão com clientes maiores.</p>
+        <div class="dep-author">
+          <div class="dep-avatar">RN</div>
+          <div>
+            <div class="dep-name">Rogério Tadeu Nascimento</div>
+            <div class="dep-role">Contador e consultor societário · Ribeirão Preto/SP</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PREÇO -->
 <section class="preco" id="preco">
-  <div class="section-label">Preço simples</div>
-  <h2>Um plano. Tudo incluído.</h2>
-  <p class="preco-sub">Sem surpresas, sem funcionalidades bloqueadas, sem taxa de setup.</p>
-  <div class="preco-card">
-    <div class="preco-badge-top">7 dias grátis</div>
-    <div class="preco-label">Plano Profissional</div>
-    <div class="preco-valor">R$ 197<span>/mês</span></div>
-    <div class="preco-periodo">Cobrança mensal · Cancele quando quiser</div>
-    <ul class="preco-lista">
-      <li>Geração ilimitada de contratos societários</li>
-      <li>5 modelos PSC com Quadro Resumo profissional</li>
-      <li>15 tipos de alteração contratual</li>
-      <li>Distrato social automatizado</li>
-      <li>Proposta de honorários com identidade visual</li>
-      <li>Assinatura digital — ClickSign, D4Sign e ZapSign</li>
-      <li>Múltiplos usuários por escritório</li>
-      <li>Suporte via e-mail</li>
-    </ul>
-    <a href="https://app.useato.com.br/cadastro" class="btn-primary" style="width:100%; text-align:center;">
-      Começar 7 dias grátis →
-    </a>
-    <p class="preco-trial">Sem cartão de crédito no trial</p>
-  </div>
-  <div class="garantias">
-    <div class="garantia"><span class="garantia-icon">🔒</span> Pagamento seguro via Asaas</div>
-    <div class="garantia"><span class="garantia-icon">📅</span> Cancele quando quiser</div>
-    <div class="garantia"><span class="garantia-icon">⚡</span> Acesso imediato</div>
-  </div>
-</section>
-
-<!-- DEPOIMENTO -->
-<section class="depoimento-section">
-  <h2 class="section-title">O que dizem sobre o ATOS Societários</h2>
-  <div class="depoimento-card">
-    <p class="depoimento-texto">"Em 35 anos de contabilidade, nunca vi uma ferramenta que realmente entendesse o que um escritório contábil precisa. O ATOS Societários foi criado por nós, para nós. Cada cláusula, cada modelo, cada fluxo foi pensado por quem já precisou fazer isso manualmente centenas de vezes."</p>
-    <div class="depoimento-autor">
-      <div class="depoimento-avatar">F</div>
-      <div>
-        <div class="depoimento-nome">Felipe Fernando Raugust Mingue</div>
-        <div class="depoimento-cargo">Contador · Cofundador do ATOS Societários · 35 anos de atuação</div>
-      </div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Preço simples</div>
+      <h2 class="section-title">Um plano. Tudo incluído.</h2>
+      <p class="section-sub">Sem surpresas, sem funcionalidades bloqueadas, sem taxa de setup.</p>
+    </div>
+    <div class="preco-card">
+      <div class="preco-eyebrow">Plano profissional</div>
+      <div class="preco-valor">R$ 197<span>/mês</span></div>
+      <p class="preco-periodo">Cobrança mensal · 7 dias grátis, sem cartão de crédito</p>
+      <ul class="preco-lista">
+        <li>Contratos ilimitados de abertura, alteração e encerramento</li>
+        <li>Flexão automática de gênero e número</li>
+        <li>CNAE inteligente com cláusulas de conselho de classe</li>
+        <li>Contrato consolidado automático a cada alteração</li>
+        <li>Assinatura digital integrada — ClickSign e outros portais</li>
+        <li>Proposta de honorários com identidade visual do escritório</li>
+        <li>Contrato de prestação de serviços nos padrões do conselho de classe</li>
+        <li>Suporte via e-mail</li>
+      </ul>
+      <a href="https://app.useato.com.br/cadastro" class="btn btn-gold btn-block">Começar agora</a>
+      <p class="preco-trial">Cancele quando quiser. Sem fidelidade.</p>
     </div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <section class="cta-final">
-  <h2>Seu escritório merece mais do que o Word</h2>
-  <p>Comece agora e gere seu primeiro contrato em menos de 5 minutos.</p>
-  <a href="https://app.useato.com.br/cadastro" class="btn-branco">Criar conta grátis →</a>
-  <p class="cta-note">7 dias de teste · Sem cartão de crédito · Cancele quando quiser</p>
+  <h2>Seu escritório merece contratos no nível que seus clientes esperam.</h2>
+  <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Testar grátis por 7 dias</a>
+  <p class="hero-note">Sem cartão · 7 dias grátis · Cancele quando quiser</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="/" class="nav-logo" style="text-decoration:none;">
-        <img src="/atos-favicon-32x32.png" alt="ATOS Societários" class="nav-logo-icon" />
-        <span class="nav-logo-text">ATOS Societários</span>
+      <a href="/" aria-label="ATOS Societários">
+        <img src="/atos-logo-completo-azul.png" alt="ATOS Societários" />
       </a>
-      <p class="footer-tagline">Gestão documental para escritórios contábeis. Desenvolvido por contadores e advogados.</p>
+      <p class="footer-tagline">Contratos societários com precisão jurídica.</p>
     </div>
     <div class="footer-links">
       <h4>Produto</h4>
@@ -714,13 +710,14 @@
       <a href="https://app.useato.com.br/cadastro">Criar conta</a>
     </div>
     <div class="footer-links">
-      <h4>Sistema</h4>
-      <a href="https://app.useato.com.br">Entrar</a>
-      <a href="mailto:contato@useato.com.br">Suporte</a>
+      <h4>Legal</h4>
+      <a href="#">Termos de Uso</a>
+      <a href="#">Privacidade</a>
+      <a href="mailto:contato@useato.com.br">Contato</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 ATOS Inteligentes Tecnologia da Informação Ltda · useato.com.br</span>
+    <span>© 2026 ATOS Societários. Todos os direitos reservados.</span>
     <span>contato@useato.com.br</span>
   </div>
 </footer>
