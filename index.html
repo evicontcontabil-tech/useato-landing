@@ -356,29 +356,6 @@
   /* ── CREDIBILIDADE ── */
   .credibilidade { padding: 110px 48px; background: var(--navy); }
 
-  /* ── DEPOIMENTOS ── */
-  .depoimentos { padding: 110px 48px; background: var(--navy-deep); }
-  .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1120px; margin: 0 auto; }
-  .dep-card {
-    background: var(--navy);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 30px;
-    display: flex; flex-direction: column;
-  }
-  .dep-quote-mark { font-family: var(--serif); font-size: 40px; color: var(--gold); opacity: 0.5; line-height: 1; margin-bottom: 4px; }
-  .dep-text { font-size: 14.5px; color: #D6DCE8; line-height: 1.75; margin-bottom: 24px; flex: 1; }
-  .dep-author { display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px solid var(--border); }
-  .dep-avatar {
-    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-    background: linear-gradient(180deg, var(--gold-light), var(--gold));
-    color: var(--navy-deep);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--serif); font-weight: 700; font-size: 14px;
-  }
-  .dep-name { font-size: 14px; font-weight: 700; }
-  .dep-role { font-size: 12.5px; color: var(--text-secondary); margin-top: 1px; }
-
   /* ── PREÇO ── */
   .preco { padding: 110px 48px; background: var(--navy-elevated); }
   .preco-card {
@@ -443,16 +420,15 @@
     .func-grid { grid-template-columns: repeat(2, 1fr); }
     .passos { grid-template-columns: 1fr; gap: 36px; }
     .passo:not(:last-child)::after { display: none; }
-    .dep-grid { grid-template-columns: 1fr; }
     .dif-row { grid-template-columns: 1fr; gap: 10px; }
     .dif-example { justify-self: flex-start; }
   }
   @media (max-width: 640px) {
-    .wrap, nav, .hero, .problema, .funcionalidades, .como-funciona, .diferenciais, .validacao, .credibilidade, .depoimentos, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
+    .wrap, nav, .hero, .problema, .funcionalidades, .como-funciona, .diferenciais, .validacao, .credibilidade, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
     nav { padding-top: 0; padding-bottom: 0; }
     .nav-links { display: none; }
     .hero { padding-top: 48px; padding-bottom: 72px; }
-    .problema, .funcionalidades, .como-funciona, .diferenciais, .validacao, .credibilidade, .depoimentos, .preco { padding-top: 72px; padding-bottom: 72px; }
+    .problema, .funcionalidades, .como-funciona, .diferenciais, .validacao, .credibilidade, .preco { padding-top: 72px; padding-bottom: 72px; }
     .video-container { padding: 40px 16px; }
     .cta-final { padding-top: 88px; padding-bottom: 88px; }
     .func-grid { grid-template-columns: 1fr; }
@@ -736,51 +712,6 @@
     <div class="section-head">
       <h2 class="section-title">Desenvolvido dentro de um escritório contábil. Não em uma startup.</h2>
       <p class="section-sub">O Atos Societários é a única plataforma do mercado feita especificamente para escritórios contábeis gerarem contratos de abertura, alteração e encerramento de empresas. Nasceu dentro de um escritório com mais de 35 anos de prática societária real, entre contadores e advogados que vivem as exigências das Juntas Comerciais e dos conselhos de classe todos os dias — não um problema imaginado em uma sala de reunião.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DEPOIMENTOS -->
-<section class="depoimentos">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Quem usa</div>
-      <h2 class="section-title">Escritórios que pararam de perder tempo com retrabalho societário</h2>
-    </div>
-    <div class="dep-grid">
-      <div class="dep-card">
-        <div class="dep-quote-mark">"</div>
-        <p class="dep-text">A geração automática do contrato consolidado depois de cada alteração eliminou um retrabalho que fazíamos toda semana. Hoje conferimos o documento pronto, não montamos do zero.</p>
-        <div class="dep-author">
-          <div class="dep-avatar">MF</div>
-          <div>
-            <div class="dep-name">Marcos Vinícius Ferreira</div>
-            <div class="dep-role">Contador · Ferreira &amp; Associados, Campinas/SP</div>
-          </div>
-        </div>
-      </div>
-      <div class="dep-card">
-        <div class="dep-quote-mark">"</div>
-        <p class="dep-text">O sistema já indica quando o CNAE exige registro na OAB ou no CRC antes de eu montar a cláusula. Isso evitou pelo menos duas devoluções na Junta nos últimos meses.</p>
-        <div class="dep-author">
-          <div class="dep-avatar">CA</div>
-          <div>
-            <div class="dep-name">Camila Rocha Andrade</div>
-            <div class="dep-role">Advogada empresarial · Curitiba/PR</div>
-          </div>
-        </div>
-      </div>
-      <div class="dep-card">
-        <div class="dep-quote-mark">"</div>
-        <p class="dep-text">Uso a proposta de honorários para fechar consultorias societárias — o documento sai com a identidade do escritório, e isso pesa na conversão com clientes maiores.</p>
-        <div class="dep-author">
-          <div class="dep-avatar">RN</div>
-          <div>
-            <div class="dep-name">Rogério Tadeu Nascimento</div>
-            <div class="dep-role">Contador e consultor societário · Ribeirão Preto/SP</div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
