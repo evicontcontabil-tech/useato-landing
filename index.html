@@ -167,78 +167,131 @@
 
   /* ── HERO VISUAL: document mock ── */
   .hero-visual { position: relative; padding: 20px; }
+  /* ── DOCUMENTO ILUSTRADO ──────────────────────────────────────────────────
+     Era um card NAVY — parecia screenshot de app. Agora é PAPEL: o mesmo fac-símile da tela de
+     login. O visitante tem de entender, em dois segundos e sem ler nada, que este sistema produz
+     DOCUMENTO SOCIETÁRIO — e a folha timbrada diz isso melhor que qualquer print de interface. */
   .doc-stack {
     position: absolute;
-    top: 34px; left: 44px; right: 4px; bottom: 4px;
-    background: var(--navy-elevated);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    transform: rotate(3deg);
+    top: 30px; left: 40px; right: 6px; bottom: 6px;
+    background: #EFEDE6;
+    border-radius: 3px;
+    transform: rotate(2.5deg);
+    box-shadow: 0 20px 45px -20px rgba(0,0,0,0.5);
     z-index: 1;
   }
   .doc-card {
     position: relative; z-index: 2;
-    background: linear-gradient(165deg, #24365f 0%, #1c2b4d 100%);
-    border: 1px solid var(--border-strong);
-    border-radius: 16px;
-    padding: 30px 30px 26px;
-    box-shadow: 0 30px 70px -20px rgba(4, 8, 20, 0.65);
+    background: #FBFAF6;
+    border-radius: 3px;
+    padding: 26px 28px 22px;
+    box-shadow: 0 34px 70px -22px rgba(4, 8, 20, 0.75);
+    color: #1A2744;
   }
-  .doc-card-head {
-    display: flex; align-items: center; gap: 12px;
-    padding-bottom: 20px; margin-bottom: 22px;
-    border-bottom: 1px solid var(--border);
+  /* Timbre: navy + a régua dourada que o produto imprime em todo contrato. */
+  .doc-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .doc-title {
+    font-family: var(--serif); font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.18em; color: #1A2744;
   }
-  .doc-mark {
-    width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
-    background: linear-gradient(180deg, var(--gold-light), var(--gold));
-    color: var(--navy-deep);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--serif); font-weight: 700; font-size: 14px;
+  .doc-via { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(26,39,68,0.4); }
+  .doc-rule { height: 3px; background: var(--gold); margin-top: 8px; }
+
+  .doc-empresa {
+    font-family: var(--serif); font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.02em; color: #1A2744;
+    margin-top: 20px; line-height: 1.25;
   }
-  .doc-card-headtext { flex: 1; min-width: 0; }
-  .doc-office { display: block; font-size: 13.5px; font-weight: 600; color: var(--white); }
-  .doc-type { display: block; font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
-  .doc-status {
-    font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-    color: var(--gold-light);
-    background: var(--gold-dim);
-    border: 1px solid rgba(184,150,46,0.35);
-    padding: 5px 10px; border-radius: 100px;
-    flex-shrink: 0;
+  .doc-ids { font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(26,39,68,0.45); margin-top: 2px; }
+
+  .doc-caput {
+    font-family: var(--serif); font-size: 11px; line-height: 1.7; text-align: justify;
+    color: rgba(26,39,68,0.75); margin-top: 20px;
   }
-  .doc-clause {
-    font-family: var(--serif); font-size: 13px; font-weight: 600;
-    color: var(--gold-light); letter-spacing: 0.01em;
-    margin-bottom: 10px;
+  .doc-caput strong { color: #1A2744; text-transform: uppercase; letter-spacing: 0.02em; }
+
+  /* Tabela de distribuição do capital — o quadro que só existe em contrato societário. */
+  .doc-tabela { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-top: 12px; }
+  .doc-tabela th {
+    font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: rgba(26,39,68,0.5); padding: 4px 0;
+    border-top: 1px solid rgba(26,39,68,0.15);
+    border-bottom: 1px solid rgba(26,39,68,0.15);
+    text-align: right;
   }
-  .doc-text {
-    font-size: 13px; color: #C3CCDC; line-height: 1.7; margin-bottom: 16px;
+  .doc-tabela th:first-child { text-align: left; }
+  .doc-tabela td {
+    font-family: var(--serif); padding: 3px 0; text-align: right;
+    color: rgba(26,39,68,0.7); border-bottom: 1px solid rgba(26,39,68,0.07);
   }
-  .doc-text strong { color: var(--white); font-weight: 600; }
-  .doc-skel { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.08); margin-bottom: 8px; }
-  .doc-skel.w-90 { width: 92%; }
-  .doc-skel.w-70 { width: 68%; }
-  .doc-skel.w-80 { width: 80%; margin-bottom: 18px; }
-  .doc-tags { display: flex; gap: 8px; margin-bottom: 22px; }
-  .doc-tag {
-    font-size: 11px; font-weight: 600; color: var(--gold-light);
-    border: 1px solid rgba(184,150,46,0.4);
-    padding: 3px 10px; border-radius: 100px;
+  .doc-tabela td:first-child { text-align: left; padding-right: 8px; }
+  .doc-socio { font-weight: 600; color: #1A2744; }
+  .doc-cpf { font-size: 8.5px; color: rgba(26,39,68,0.35); margin-left: 5px; }
+  .doc-total td {
+    font-weight: 700; color: #1A2744;
+    border-top: 1px solid rgba(26,39,68,0.25); border-bottom: none; padding-top: 5px;
   }
-  .doc-sign {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    padding-top: 18px; border-top: 1px solid var(--border);
+
+  /* Assinatura DIGITAL — não manuscrita: a caneta é o mundo que o produto substitui. */
+  .doc-assin {
+    margin-top: 18px; padding: 9px 11px;
+    border: 1px solid rgba(26,39,68,0.15); border-radius: 3px;
+    background: rgba(26,39,68,0.03);
   }
-  .doc-sign-name { font-size: 13px; font-weight: 600; color: var(--white); }
-  .doc-sign-role { display: block; font-size: 11.5px; color: var(--text-secondary); margin-top: 1px; }
-  .doc-sign-badge {
-    font-size: 11px; font-weight: 600; color: #6EE7B7;
+  .doc-assin-head {
     display: flex; align-items: center; gap: 5px;
-    white-space: nowrap;
+    padding-bottom: 6px; border-bottom: 1px solid rgba(26,39,68,0.1);
+    font-size: 7.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+    color: rgba(26,39,68,0.7);
   }
+  .doc-check { color: #047857; font-size: 10px; line-height: 1; }
+  .doc-assin-linha {
+    display: flex; align-items: baseline; gap: 6px;
+    font-size: 8px; margin-top: 5px;
+  }
+  .doc-assin-nome { font-family: var(--serif); font-weight: 600; color: #1A2744; }
+  .doc-assin-cpf { color: rgba(26,39,68,0.35); }
+  .doc-assin-data { margin-left: auto; color: rgba(26,39,68,0.45); font-variant-numeric: tabular-nums; }
+  .doc-hash {
+    margin-top: 8px; font-family: ui-monospace, monospace; font-size: 7px;
+    text-transform: uppercase; letter-spacing: 0.06em; color: rgba(26,39,68,0.3);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  .doc-rodape { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+  .doc-rodape span { font-size: 8px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(26,39,68,0.35); }
+  .doc-selo {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid rgba(184,150,46,0.6); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 7px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em; line-height: 9px; text-align: center;
+  }
+
+  /* Carimbos: NÃO reproduzem a marca de nenhum órgão — usar o símbolo da OAB ou do CRC num documento
+     fictício sugere endosso. O que se reconhece num carimbo é a FORMA: círculo duplo, caixa-alta,
+     tinta gasta, torto. São DOIS: carimbo demais vira carnaval. */
+  .carimbo {
+    position: absolute; z-index: 3; pointer-events: none;
+    width: 76px; height: 76px; border-radius: 50%;
+    border: 2.5px solid currentColor; padding: 3px;
+    display: flex; align-items: center; justify-content: center;
+    mix-blend-mode: multiply;
+  }
+  .carimbo-inner {
+    width: 100%; height: 100%; border-radius: 50%;
+    border: 1px solid currentColor;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; line-height: 1; padding: 0 4px;
+  }
+  .carimbo-orgao { font-size: 7.5px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; }
+  .carimbo-sep { width: 100%; height: 1px; background: currentColor; opacity: 0.5; margin: 3px 0; }
+  .carimbo-sub { font-size: 5.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .carimbo-junta { top: 44px; right: -18px; transform: rotate(14deg); color: rgba(30,91,140,0.42); }
+  .carimbo-conselho { bottom: 56px; left: -22px; transform: rotate(-11deg); color: rgba(140,47,47,0.38); }
+
   .doc-float-badge {
-    position: absolute; top: -16px; right: -10px; z-index: 3;
+    position: absolute; top: -16px; right: -10px; z-index: 4;
     background: linear-gradient(180deg, var(--gold-light), var(--gold));
     color: var(--navy-deep);
     font-size: 12px; font-weight: 700;
@@ -246,20 +299,6 @@
     transform: rotate(-4deg);
     box-shadow: 0 14px 28px -8px rgba(184,150,46,0.5);
     max-width: 190px; line-height: 1.35;
-  }
-
-  /* ── VÍDEO ── */
-    font-size: 13px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.18em;
-    color: var(--gold-light);
-    text-align: center;
-    margin-bottom: 16px;
-  }
-    aspect-ratio: 16 / 9;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-    border: 1px solid rgba(255,255,255,0.08);
   }
 
   /* ── PROBLEMA ── */
@@ -421,6 +460,8 @@
     .cta-final { padding-top: 88px; padding-bottom: 88px; }
     .func-grid { grid-template-columns: 1fr; }
     .doc-float-badge { display: none; }
+    /* Os carimbos invadem a borda da folha de propósito — no mobile isso estouraria a tela. */
+    .carimbo { display: none; }
     .doc-stack { display: none; }
     .preco-card { padding: 32px 26px; }
     footer { padding: 48px 20px 24px; }
@@ -462,30 +503,80 @@
     <div class="hero-visual">
       <div class="doc-float-badge">✓ Nos moldes da Junta Comercial</div>
       <div class="doc-stack" aria-hidden="true"></div>
+
       <div class="doc-card" aria-hidden="true">
-        <div class="doc-card-head">
-          <div class="doc-mark">CN</div>
-          <div class="doc-card-headtext">
-            <span class="doc-office">Contabilidade Nascimento</span>
-            <span class="doc-type">Alteração Contratual · 3ª</span>
-          </div>
-          <span class="doc-status">Consolidado</span>
+        <div class="doc-head">
+          <span class="doc-title">Contrato Social</span>
+          <span class="doc-via">Via 1 de 2</span>
         </div>
-        <p class="doc-clause">CLÁUSULA 4ª — DA ADMINISTRAÇÃO</p>
-        <p class="doc-text">A sociedade será administrada por <strong>Camila Rocha Andrade</strong>, sócia, que representa a empresa ativa e passivamente...</p>
-        <div class="doc-skel w-90"></div>
-        <div class="doc-skel w-70"></div>
-        <div class="doc-skel w-80"></div>
-        <div class="doc-tags">
-          <span class="doc-tag">JUCESP</span>
-          <span class="doc-tag">OAB/SP</span>
-        </div>
-        <div class="doc-sign">
-          <div>
-            <div class="doc-sign-name">Camila Rocha Andrade</div>
-            <span class="doc-sign-role">Sócia administradora</span>
+        <div class="doc-rule"></div>
+
+        <p class="doc-empresa">Andrade &amp; Rocha Serviços Contábeis Ltda.</p>
+        <p class="doc-ids">CNPJ 12.345.678/0001-90 · NIRE 35.2••.•••.••1</p>
+
+        <p class="doc-caput">
+          <strong>Cláusula Quinta.</strong> O capital social é de R$ 100.000,00 (cem mil reais), dividido em
+          100.000 quotas no valor nominal de R$ 1,00 cada, integralizadas neste ato em moeda corrente
+          nacional, assim distribuídas entre as sócias:
+        </p>
+
+        <table class="doc-tabela">
+          <thead>
+            <tr><th>Sócio</th><th>Quotas</th><th>Valor</th><th>%</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="doc-socio">Ana Carolina Ribeiro</span><span class="doc-cpf">•••.533.•••-05</span></td>
+              <td>60.000</td><td>R$ 60.000,00</td><td>60%</td>
+            </tr>
+            <tr>
+              <td><span class="doc-socio">Bruno Tavares Lima</span><span class="doc-cpf">•••.117.•••-42</span></td>
+              <td>40.000</td><td>R$ 40.000,00</td><td>40%</td>
+            </tr>
+            <tr class="doc-total">
+              <td>Total</td><td>100.000</td><td>R$ 100.000,00</td><td>100%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="doc-assin">
+          <div class="doc-assin-head">
+            <span class="doc-check">✓</span>
+            Assinado digitalmente · Documento com validade jurídica
           </div>
-          <span class="doc-sign-badge">✓ Assinado digitalmente</span>
+          <div class="doc-assin-linha">
+            <span class="doc-check">✓</span>
+            <span class="doc-assin-nome">Ana Carolina Ribeiro</span>
+            <span class="doc-assin-cpf">•••.533.•••-05</span>
+            <span class="doc-assin-data">13/07/2026 09:41</span>
+          </div>
+          <div class="doc-assin-linha">
+            <span class="doc-check">✓</span>
+            <span class="doc-assin-nome">Bruno Tavares Lima</span>
+            <span class="doc-assin-cpf">•••.117.•••-42</span>
+            <span class="doc-assin-data">13/07/2026 14:07</span>
+          </div>
+          <p class="doc-hash">Hash SHA-256 · 4f3a9c7e21b8d0e5f6a1c9b3d7e2408f6b5a1d3c</p>
+        </div>
+
+        <div class="doc-rodape">
+          <span>Sócia administradora</span>
+          <div class="doc-selo">ATO<br>2026</div>
+        </div>
+      </div>
+
+      <div class="carimbo carimbo-junta" aria-hidden="true">
+        <div class="carimbo-inner">
+          <span class="carimbo-orgao">Junta Comercial</span>
+          <span class="carimbo-sep"></span>
+          <span class="carimbo-sub">Registro · JUCESP</span>
+        </div>
+      </div>
+      <div class="carimbo carimbo-conselho" aria-hidden="true">
+        <div class="carimbo-inner">
+          <span class="carimbo-orgao">Conselho de Classe</span>
+          <span class="carimbo-sep"></span>
+          <span class="carimbo-sub">CRC · OAB · CREA</span>
         </div>
       </div>
     </div>
