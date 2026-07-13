@@ -249,29 +249,18 @@
   }
 
   /* ── VÍDEO ── */
-  .video-section { background: var(--navy); }
-  .video-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-  .video-eyebrow {
     font-size: 13px; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.18em;
     color: var(--gold-light);
     text-align: center;
     margin-bottom: 16px;
   }
-  .video-wrapper {
     aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 25px 60px rgba(0,0,0,0.4);
     border: 1px solid rgba(255,255,255,0.08);
   }
-  #video-placeholder {
-    width: 100%; height: 100%;
-    background: #0F1929;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 16px;
-  }
-  .video-placeholder-text { font-size: 14px; color: var(--text-secondary); }
 
   /* ── PROBLEMA ── */
   .problema { padding: 110px 48px; background: var(--navy-deep); }
@@ -429,7 +418,6 @@
     .nav-links { display: none; }
     .hero { padding-top: 48px; padding-bottom: 72px; }
     .problema, .funcionalidades, .como-funciona, .diferenciais, .validacao, .credibilidade, .preco { padding-top: 72px; padding-bottom: 72px; }
-    .video-container { padding: 40px 16px; }
     .cta-final { padding-top: 88px; padding-bottom: 88px; }
     .func-grid { grid-template-columns: 1fr; }
     .doc-float-badge { display: none; }
@@ -464,7 +452,7 @@
     <div>
       <div class="hero-eyebrow">Para escritórios contábeis e advocatícios</div>
       <h1>O departamento societário do seu escritório, funcionando <em>no nível que seus clientes exigem.</em></h1>
-      <p class="lead">Contratos emitidos em minutos — sem erros, formatados e prontos para assinatura eletrônica, com a identidade visual do seu escritório. O Atos Societários é a única plataforma do mercado que lê o CNAE da empresa e monta automaticamente as cláusulas exigidas pela Junta Comercial, pela OAB, pelo CRC, pelo CRM e por outros conselhos de classe.</p>
+      <p class="lead">Contratos formatados, com a concordância correta e a identidade visual do seu escritório, prontos para assinatura eletrônica. O Atos Societários lê o CNAE da empresa, identifica quando a atividade exige registro em conselho de classe — OAB, CRC, CRM, CREA — e insere a cláusula correspondente, com a redação do órgão. Você confirma; ele não deixa passar em branco.</p>
       <div class="hero-ctas">
         <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Começar grátis por 7 dias</a>
         <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
@@ -503,30 +491,6 @@
     </div>
   </div>
 </section>
-
-<!-- VÍDEO -->
-<section class="video-section">
-  <div class="video-container">
-    <div class="video-eyebrow">Veja como funciona em 90 segundos</div>
-    <div class="video-wrapper">
-      <!-- VÍDEO: substituir div#video-placeholder por <iframe src="URL" frameborder="0" allowfullscreen style="width:100%;height:100%"> quando disponível -->
-      <div id="video-placeholder">
-        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="32" cy="32" r="32" fill="url(#video-play-gradient)" />
-          <path d="M26 20L46 32L26 44V20Z" fill="#FFFFFF" />
-          <defs>
-            <linearGradient id="video-play-gradient" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
-              <stop offset="0" style="stop-color:#D9BC6F" />
-              <stop offset="1" style="stop-color:#B8962E" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <p class="video-placeholder-text">Vídeo em breve</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PROBLEMA -->
 <section class="problema">
   <div class="wrap">
@@ -572,7 +536,7 @@
       <div class="func-card">
         <div class="func-index">01</div>
         <h3>O sistema sabe o que cada CNAE exige</h3>
-        <p>Inseriu um CNAE regulamentado? O Atos Societários identifica automaticamente se a atividade exige registro na OAB, CRC, CRM, CREA, CRO, CRMV ou outro conselho — e insere a cláusula obrigatória no lugar certo, com a redação exigida pelo respectivo órgão. Para sociedades de advogados, o contrato sai formatado nos termos exigidos pela OAB. Nada faltando. Nada errado.</p>
+        <p>Inseriu um CNAE regulamentado? O Atos Societários reconhece a atividade, avisa que ela pode exigir registro na OAB, CRC, CRM, CREA, CRO, CRMV ou outro conselho, e monta a cláusula correspondente com a redação do órgão — no lugar certo do contrato. A exigência varia de regional para regional, e por isso a decisão continua sendo sua: o sistema não deixa a cláusula passar em branco, e não decide no seu lugar. Para sociedades de advogados, o contrato sai nos termos do Estatuto da OAB.</p>
       </div>
       <div class="func-card">
         <div class="func-index">02</div>
@@ -592,7 +556,7 @@
       <div class="func-card">
         <div class="func-index">05</div>
         <h3>Do documento à assinatura sem sair da plataforma</h3>
-        <p>Envie o contrato para assinatura digital com ClickSign, direto pelo Atos Societários — com validade jurídica e rastreabilidade completa.</p>
+        <p>Envie o contrato para assinatura digital direto pelo Atos Societários — integrado à ClickSign, à D4Sign e à ZapSign, com validade jurídica e rastreabilidade completa. Você usa a plataforma que já tem.</p>
       </div>
       <div class="func-card">
         <div class="func-index">06</div>
@@ -614,13 +578,13 @@
     <div class="passos">
       <div class="passo">
         <div class="passo-num">1</div>
-        <h3>Informe o CNPJ</h3>
-        <p>Digite o CNPJ e o sistema preenche automaticamente os dados da empresa, dos sócios e da atividade exercida.</p>
+        <h3>Comece pela empresa</h3>
+        <p>Vai abrir uma empresa? Cadastre os sócios e o objeto social. A empresa já existe? Informe o CNPJ e o sistema importa os dados, os sócios e a atividade — sem digitação.</p>
       </div>
       <div class="passo">
         <div class="passo-num">2</div>
         <h3>Escolha o ato</h3>
-        <p>Abertura, alteração ou distrato. O sistema guia o preenchimento e já identifica quais cláusulas são obrigatórias para aquele tipo de empresa e atividade.</p>
+        <p>Abertura, alteração ou distrato. O sistema guia o preenchimento, explica o que cada cláusula decide na prática e avisa quando a atividade pede registro em conselho de classe.</p>
       </div>
       <div class="passo">
         <div class="passo-num">3</div>
@@ -651,7 +615,7 @@
       </div>
       <div class="dif-row">
         <div class="dif-label">Consolidação automática</div>
-        <div class="dif-statement">Você escolhe a alteração. O sistema redige e consolida o contrato inteiro — sem erros, sem trechos soltos.</div>
+          <div class="dif-statement">Você escolhe a alteração. O sistema redige a cláusula e reescreve o contrato inteiro, já consolidado — sem cruzar documentos à mão, sem trechos soltos.</div>
         <div class="dif-example"><strong>3ª alteração</strong> <span class="to">→</span> contrato v4</div>
       </div>
       <div class="dif-row">
@@ -699,8 +663,8 @@
       </div>
       <div class="func-card">
         <div class="func-index">06</div>
-        <h3>Mudança de endereço com troca de comarca</h3>
-        <p>O sistema atualiza a cláusula de foro conforme a nova sede — sem deixar o contrato apontando para a comarca errada.</p>
+        <h3>Morte de sócio e a entrada da família</h3>
+        <p>O contrato define, desde a abertura, o que acontece: os herdeiros recebem os haveres e não entram, entram com aprovação dos remanescentes, ou entram de pleno direito. Com o critério de apuração e a forma de pagamento já escritos — antes de a família precisar deles.</p>
       </div>
     </div>
   </div>
@@ -711,7 +675,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2 class="section-title">Desenvolvido dentro de um escritório contábil. Não em uma startup.</h2>
-      <p class="section-sub">O Atos Societários é a única plataforma do mercado feita especificamente para escritórios contábeis gerarem contratos de abertura, alteração e encerramento de empresas. Nasceu dentro de um escritório com mais de 35 anos de prática societária real, entre contadores e advogados que vivem as exigências das Juntas Comerciais e dos conselhos de classe todos os dias — não um problema imaginado em uma sala de reunião.</p>
+      <p class="section-sub">O Atos Societários foi feito especificamente para escritórios contábeis gerarem contratos de abertura, alteração e encerramento de empresas. Nasceu dentro de um escritório com mais de 35 anos de prática societária real, entre contadores e advogados que vivem as exigências das Juntas Comerciais e dos conselhos de classe todos os dias — não um problema imaginado em uma sala de reunião.</p>
     </div>
   </div>
 </section>
@@ -734,7 +698,7 @@
         <li>Concordância automática de gênero e número</li>
         <li>Contrato consolidado gerado a cada alteração</li>
         <li>Contrato de prestação de serviços nos padrões do conselho de classe</li>
-        <li>Assinatura digital integrada (ClickSign)</li>
+        <li>Assinatura digital integrada (ClickSign, D4Sign ou ZapSign)</li>
         <li>Proposta de honorários com identidade visual do escritório</li>
         <li>Suporte especializado</li>
       </ul>
