@@ -155,8 +155,30 @@
   .hero h1 em { font-style: normal; color: var(--gold-light); }
   .hero p.lead {
     font-size: 18px; color: var(--text-secondary);
-    max-width: 480px; margin-bottom: 40px;
+    max-width: 480px; margin-bottom: 20px;
     line-height: 1.75;
+  }
+  /* Segundo parágrafo do hero: o texto institucional. Menor e mais discreto — a primeira frase é a
+     promessa, esta é a credencial. Se as duas tiverem o mesmo peso, nenhuma é lida. */
+  .hero p.lead-sec {
+    font-size: 15px; color: var(--text-secondary); opacity: 0.85;
+    max-width: 520px; margin-bottom: 36px;
+    line-height: 1.75;
+  }
+
+  /* ── CONTRASTE (Word × ATO) ── */
+  .contraste { padding: 96px 48px; background: var(--navy); }
+  .contraste-lista {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px 32px; max-width: 900px; margin: 0 auto; list-style: none;
+  }
+  .contraste-lista li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 15px; color: #D6DCE8; line-height: 1.6;
+  }
+  .ck {
+    color: var(--gold); font-weight: 700; flex-shrink: 0;
+    font-size: 13px; line-height: 1.7;
   }
   .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
   .hero-note {
@@ -379,7 +401,6 @@
   .dif-example strong { color: var(--white); font-weight: 600; }
 
   /* ── VALIDAÇÃO JURÍDICA ── */
-  .validacao { padding: 110px 48px; background: var(--navy-deep); }
 
   /* ── CREDIBILIDADE ── */
   .credibilidade { padding: 110px 48px; background: var(--navy); }
@@ -452,11 +473,11 @@
     .dif-example { justify-self: flex-start; }
   }
   @media (max-width: 640px) {
-    .wrap, nav, .hero, .problema, .funcionalidades, .como-funciona, .diferenciais, .validacao, .credibilidade, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
+    .wrap, nav, .hero, .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
     nav { padding-top: 0; padding-bottom: 0; }
     .nav-links { display: none; }
     .hero { padding-top: 48px; padding-bottom: 72px; }
-    .problema, .funcionalidades, .como-funciona, .diferenciais, .validacao, .credibilidade, .preco { padding-top: 72px; padding-bottom: 72px; }
+    .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco { padding-top: 72px; padding-bottom: 72px; }
     .cta-final { padding-top: 88px; padding-bottom: 88px; }
     .func-grid { grid-template-columns: 1fr; }
     .doc-float-badge { display: none; }
@@ -492,14 +513,17 @@
   <div class="hero-grid">
     <div>
       <div class="hero-eyebrow">Para escritórios contábeis e advocatícios</div>
-      <h1>O departamento societário do seu escritório, funcionando <em>no nível que seus clientes exigem.</em></h1>
-      <p class="lead">Contratos formatados, com a concordância correta e a identidade visual do seu escritório, prontos para assinatura eletrônica. O Atos Societários lê o CNAE da empresa, identifica quando a atividade exige registro em conselho de classe — OAB, CRC, CRM, CREA — e insere a cláusula correspondente, com a redação do órgão. Você confirma; ele não deixa passar em branco.</p>
+      <h1>Automatize o departamento societário do seu escritório.</h1>
+      <p class="lead">Gere contratos societários em minutos, com segurança jurídica, padronização e muito menos retrabalho.</p>
+      <p class="lead lead-sec">Desenvolvido por advogados e contadores que vivem a rotina societária há mais de 35 anos. O ATO automatiza a elaboração de contratos, alterações e consolidações societárias, reduzindo erros, aumentando a produtividade e permitindo que toda a equipe trabalhe no mesmo padrão de excelência.</p>
+
       <div class="hero-ctas">
-        <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Começar grátis por 7 dias</a>
-        <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+        <a class="btn btn-gold" href="https://app.useato.com.br/cadastro">Teste gratuitamente por 7 dias</a>
+        <a class="btn btn-ghost" href="#como-funciona">Ver como funciona</a>
       </div>
-      <p class="hero-note">Sem cartão de crédito · Cancele quando quiser · Desenvolvido por quem vive a rotina societária</p>
+      <p class="hero-note">Sem cartão de crédito · Cancele quando quiser</p>
     </div>
+
     <div class="hero-visual">
       <div class="doc-float-badge">✓ Nos moldes da Junta Comercial</div>
       <div class="doc-stack" aria-hidden="true"></div>
@@ -582,34 +606,53 @@
     </div>
   </div>
 </section>
+
+<!-- CONTRASTE -->
+<section class="contraste">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title">Enquanto outros ainda editam contratos no Word...</h2>
+      <p class="section-sub">...seu escritório entrega documentos prontos para assinatura em poucos minutos.</p>
+    </div>
+    <ul class="contraste-lista">
+      <li><span class="ck">&#10004;</span> Contratos formatados automaticamente</li>
+      <li><span class="ck">&#10004;</span> Consolidação automática a cada alteração</li>
+      <li><span class="ck">&#10004;</span> Identidade visual do escritório</li>
+      <li><span class="ck">&#10004;</span> Inteligência regulatória por CNAE</li>
+      <li><span class="ck">&#10004;</span> Validação jurídica</li>
+      <li><span class="ck">&#10004;</span> Integração com assinatura digital</li>
+    </ul>
+  </div>
+</section>
+
 <!-- PROBLEMA -->
 <section class="problema">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">O problema</div>
-      <h2 class="section-title">O Word não é o problema. O problema é o que acontece quando o contrato está errado.</h2>
-      <p class="section-sub">Cada erro em um ato societário tem um custo real: taxa de registro, prazo perdido e um cliente que não entende por que demorou.</p>
+      <h2 class="section-title">O problema não é elaborar contratos. É tudo o que acontece quando um contrato está errado.</h2>
+      <p class="section-sub">Cada erro em um ato societário custa dinheiro, tempo e credibilidade. Uma cláusula esquecida. Uma consolidação incompleta. Uma alteração que não refletiu no contrato consolidado. Uma devolução da Junta Comercial. Uma exigência do órgão de registro profissional. Tudo isso gera retrabalho, novos protocolos, novas taxas e clientes insatisfeitos — enquanto o departamento societário segue dependente das mesmas pessoas para revisar absolutamente tudo.</p>
     </div>
     <div class="problema-grid">
       <div class="problema-card">
         <div class="problema-num">01</div>
-        <h3>O Word não avisa quando você erra</h3>
-        <p>Erro de digitação no nome do sócio. Participação societária que não fecha. Cláusula obrigatória que ficou de fora. No Word, qualquer deslize passa despercebido — e só aparece quando a Junta devolve o processo.</p>
+        <h3>O Word não aponta os erros</h3>
+        <p>O documento parece correto até chegar à Junta Comercial ou ao órgão competente. Pequenos erros de redação, distribuição de quotas, administração ou concordância passam despercebidos — e aparecem apenas quando já é tarde.</p>
       </div>
       <div class="problema-card">
         <div class="problema-num">02</div>
-        <h3>Cada alteração é uma armadilha</h3>
-        <p>Você faz a 4ª alteração, mas o contrato consolidado ainda reflete a 2ª. Cruzar dados de três documentos diferentes à mão, sem perder nenhum detalhe, é uma tarefa que consome horas e ainda assim gera erros. E o cliente não quer saber de "processo" — ele quer o documento pronto.</p>
+        <h3>Cada alteração contratual aumenta o risco</h3>
+        <p>Depois da terceira ou quarta alteração, controlar manualmente todas as mudanças vira um trabalho delicado. Uma cláusula antiga permanece. Outra deixa de existir. Um dado fica inconsistente. O cliente recebe um contrato consolidado que já nasceu desatualizado.</p>
       </div>
       <div class="problema-card">
         <div class="problema-num">03</div>
-        <h3>A Junta registrou. O Conselho indeferiu.</h3>
-        <p>O contrato passou na Junta Comercial. Mas a atividade exigia uma cláusula específica da OAB, do CRC ou do CRM — e ela não estava lá. Resultado: nova alteração contratual, nova taxa de registro, novo prazo, cliente furioso e a credibilidade do seu escritório em xeque. Tudo por uma cláusula que o sistema deveria ter inserido automaticamente.</p>
+        <h3>O risco não termina na Junta Comercial</h3>
+        <p>Algumas atividades podem exigir registro perante órgãos de fiscalização profissional — e essa necessidade nem sempre é lembrada durante a elaboração. O resultado pode ser um novo instrumento, apenas para adequar cláusulas específicas depois.</p>
       </div>
       <div class="problema-card">
         <div class="problema-num">04</div>
-        <h3>Você não consegue tirar o societário da sua cabeça</h3>
-        <p>Treinar alguém para fazer contratos societários com qualidade leva meses. Cada colaborador novo repete os mesmos erros. Você acaba revisando tudo sozinho — porque o risco de errar é alto demais para confiar sem conferir. O departamento societário vira um gargalo que só você consegue resolver.</p>
+        <h3>O societário vira um gargalo</h3>
+        <p>Poucas pessoas conseguem elaborar contratos com segurança. Você acaba revisando tudo. A equipe depende da sua experiência para cada documento, e o crescimento do escritório fica limitado à capacidade de uma única pessoa.</p>
       </div>
     </div>
   </div>
@@ -620,39 +663,39 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">A solução</div>
-      <h2 class="section-title">O sistema que lê o CNAE e sabe exatamente o que o contrato precisa ter.</h2>
-      <p class="section-sub">Não é um modelo preenchível. É uma plataforma inteligente que entende o tipo de empresa, o perfil dos sócios e a atividade exercida — e monta o documento certo, do jeito certo, para o órgão certo.</p>
+      <h2 class="section-title">O departamento societário inteligente do seu escritório.</h2>
+      <p class="section-sub">O ATO não é um editor de contratos. É uma plataforma que automatiza as tarefas repetitivas do departamento societário, para que sua equipe produza documentos com rapidez, segurança e padronização.</p>
     </div>
     <div class="func-grid">
       <div class="func-card">
         <div class="func-index">01</div>
-        <h3>O sistema sabe o que cada CNAE exige</h3>
-        <p>Inseriu um CNAE regulamentado? O Atos Societários reconhece a atividade, avisa que ela pode exigir registro na OAB, CRC, CRM, CREA, CRO, CRMV ou outro conselho, e monta a cláusula correspondente com a redação do órgão — no lugar certo do contrato. A exigência varia de regional para regional, e por isso a decisão continua sendo sua: o sistema não deixa a cláusula passar em branco, e não decide no seu lugar. Para sociedades de advogados, o contrato sai nos termos do Estatuto da OAB.</p>
+        <h3>Consolidação automática</h3>
+        <p>Nunca mais consolide contratos manualmente — é o maior diferencial do ATO. A cada alteração, o sistema redige a nova cláusula, atualiza todas as cláusulas impactadas, reorganiza o contrato e entrega a versão consolidada pronta. Sem copiar e colar, sem revisar dezenas de páginas, sem risco de esquecer alterações anteriores.</p>
       </div>
       <div class="func-card">
         <div class="func-index">02</div>
-        <h3>"A sócia", "o sócio", "os sócios" — sempre certo</h3>
-        <p>O sistema flexiona automaticamente todo o texto do contrato conforme o gênero e o número dos sócios. Sem revisão manual. Sem "o sócio" quando é mulher. Sem "as partes resolvem" em um contrato de sócio único.</p>
+        <h3>Inteligência regulatória por CNAE</h3>
+        <p>O sistema analisa os CNAEs informados e identifica quando a atividade pode exigir registro perante órgão de fiscalização profissional. Quando isso acontece, ele alerta e permite incluir as cláusulas específicas daquele cenário. A decisão permanece nas mãos do profissional: o sistema auxilia, não presume.</p>
       </div>
       <div class="func-card">
         <div class="func-index">03</div>
-        <h3>Poucos cliques. Contrato redigido e consolidado sozinho.</h3>
-        <p>Você escolhe o tipo de alteração — o sistema redige a cláusula, atualiza o contrato inteiro e consolida tudo automaticamente, sempre no timbre do seu escritório. Sem cruzar documentos à mão, sem copiar e colar. Limpo, seguro e profissional.</p>
+        <h3>Contratos juridicamente estruturados</h3>
+        <p>Os modelos foram desenvolvidos e validados por advogados especialistas em Direito Empresarial e Societário, com profissionais que atuam diariamente na constituição e alteração de empresas. Você trabalha com documentos construídos para a prática — não com modelos genéricos.</p>
       </div>
       <div class="func-card">
         <div class="func-index">04</div>
-        <h3>Qualquer pessoa da equipe opera. Ninguém depende de terceiros.</h3>
-        <p>O fluxo guiado ensina quais cláusulas existem e quando usar cada uma — sem precisar contratar advogado externo ou consultoria societária para acertar. Nenhuma etapa é pulada, nenhuma cláusula é esquecida, e você delega com confiança.</p>
+        <h3>Padronização para toda a equipe</h3>
+        <p>O ATO conduz o usuário durante todo o processo. Isso reduz dúvidas operacionais, evita esquecimentos e padroniza a elaboração — de modo que qualquer integrante da equipe produza contratos com o mesmo padrão técnico.</p>
       </div>
       <div class="func-card">
         <div class="func-index">05</div>
-        <h3>Do documento à assinatura sem sair da plataforma</h3>
-        <p>Envie o contrato para assinatura digital direto pelo Atos Societários — integrado à ClickSign, à D4Sign e à ZapSign, com validade jurídica e rastreabilidade completa. Você usa a plataforma que já tem.</p>
+        <h3>Identidade visual do seu escritório</h3>
+        <p>Os documentos são gerados com a marca do seu escritório. Seu cliente nunca vê a marca do ATO — o protagonismo continua sendo seu.</p>
       </div>
       <div class="func-card">
         <div class="func-index">06</div>
-        <h3>Propostas que fecham mais negócio</h3>
-        <p>Gere propostas de honorários personalizadas em poucos minutos, com a identidade do seu escritório — muito mais profissional que um PDF genérico. O mesmo padrão vale para contratos, alterações e distratos.</p>
+        <h3>Propostas de honorários profissionais</h3>
+        <p>Além dos contratos, o sistema gera propostas comerciais elegantes, personalizadas com a identidade visual do escritório. Mais profissionalismo, mais agilidade, mais conversões.</p>
       </div>
     </div>
   </div>
@@ -662,25 +705,24 @@
 <section class="como-funciona" id="como-funciona">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Simples assim</div>
-      <h2 class="section-title">Tão simples que sua equipe não precisa de treinamento</h2>
-      <p class="section-sub">Um fluxo criado por quem tem mais de 35 anos de rotina societária. Cada passo foi pensado para eliminar erros antes que eles aconteçam.</p>
+      <div class="eyebrow">Como funciona</div>
+      <h2 class="section-title">Três passos. Poucos minutos. Nenhum retrabalho.</h2>
     </div>
     <div class="passos">
       <div class="passo">
         <div class="passo-num">1</div>
-        <h3>Comece pela empresa</h3>
-        <p>Vai abrir uma empresa? Cadastre os sócios e o objeto social. A empresa já existe? Informe o CNPJ e o sistema importa os dados, os sócios e a atividade — sem digitação.</p>
+        <h3>Escolha o ato societário</h3>
+        <p>Abertura, alteração ou encerramento. O sistema conduz todo o preenchimento.</p>
       </div>
       <div class="passo">
         <div class="passo-num">2</div>
-        <h3>Escolha o ato</h3>
-        <p>Abertura, alteração ou distrato. O sistema guia o preenchimento, explica o que cada cláusula decide na prática e avisa quando a atividade pede registro em conselho de classe.</p>
+        <h3>Informe os dados</h3>
+        <p>Clientes, sócios, capital, administração e objeto social — sempre com validações automáticas durante o processo.</p>
       </div>
       <div class="passo">
         <div class="passo-num">3</div>
         <h3>Receba o documento pronto</h3>
-        <p>O contrato sai formatado, com as cláusulas certas, a concordância correta e a identidade do seu escritório. Pronto para assinar e registrar.</p>
+        <p>O contrato já sai formatado, consolidado, com a identidade visual do escritório e pronto para assinatura eletrônica.</p>
       </div>
     </div>
   </div>
@@ -690,72 +732,39 @@
 <section class="diferenciais">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">O que nenhum outro sistema faz</div>
-      <h2 class="section-title">Precisão que se vê no texto do contrato</h2>
+      <div class="eyebrow">O que torna o ATO diferente</div>
+      <h2 class="section-title">Não automatizamos apenas documentos. Automatizamos decisões repetitivas.</h2>
     </div>
     <div class="dif-list">
       <div class="dif-row">
-        <div class="dif-label">Gênero / número</div>
-        <div class="dif-statement">O contrato fala no feminino quando a sócia é mulher.</div>
-        <div class="dif-example"><strong>sócio</strong> <span class="to">→</span> sócia</div>
-      </div>
-      <div class="dif-row">
-        <div class="dif-label">CNAE inteligente</div>
-        <div class="dif-statement">Sabe quando o contrato precisa ir ao CRC, à OAB ou ao CRM.</div>
-        <div class="dif-example"><strong>6201-5/01</strong> <span class="to">→</span> registro CRC</div>
-      </div>
-      <div class="dif-row">
         <div class="dif-label">Consolidação automática</div>
-          <div class="dif-statement">Você escolhe a alteração. O sistema redige a cláusula e reescreve o contrato inteiro, já consolidado — sem cruzar documentos à mão, sem trechos soltos.</div>
-        <div class="dif-example"><strong>3ª alteração</strong> <span class="to">→</span> contrato v4</div>
+        <div class="dif-statement">O sistema reescreve todo o contrato consolidado a cada alteração.</div>
+        <div class="dif-example"><span>3ª alteração</span> &rarr; <span>contrato v4</span></div>
+      </div>
+      <div class="dif-row">
+        <div class="dif-label">Inteligência regulatória</div>
+        <div class="dif-statement">Identifica quando um CNAE pode exigir registro profissional e adapta o contrato conforme a confirmação do usuário.</div>
+        <div class="dif-example"><span>6201-5/01</span> &rarr; <span>alerta CRC</span></div>
+      </div>
+      <div class="dif-row">
+        <div class="dif-label">Concordância automática</div>
+        <div class="dif-statement">O contrato ajusta gênero, número e redação conforme a composição societária.</div>
+        <div class="dif-example"><span>sócio</span> &rarr; <span>sócia</span></div>
       </div>
       <div class="dif-row">
         <div class="dif-label">Identidade visual</div>
-        <div class="dif-statement">O documento sai com a logo e a marca do seu escritório — nunca com a marca do Atos Societários.</div>
-        <div class="dif-example"><strong>modelo genérico</strong> <span class="to">→</span> identidade do escritório</div>
+        <div class="dif-statement">Todos os documentos são emitidos com a marca do seu escritório.</div>
+        <div class="dif-example"><span>modelo genérico</span> &rarr; <span>seu timbre</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- VALIDAÇÃO JURÍDICA -->
-<section class="validacao">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Validação jurídica</div>
-      <h2 class="section-title">Os casos que mais aparecem na prática societária — já resolvidos no sistema.</h2>
-      <p class="section-sub">Mais de 35 anos catalogando cláusulas, variáveis e exceções. Cada cenário abaixo já está mapeado, validado e pronto pra gerar.</p>
-    </div>
-    <div class="func-grid">
-      <div class="func-card">
-        <div class="func-index">01</div>
-        <h3>Entrada de sócio com aporte de capital</h3>
-        <p>O sistema recalcula automaticamente a participação de todos os sócios, atualiza o capital social e ajusta a cláusula de administração — sem planilha paralela.</p>
+      <div class="dif-row">
+        <div class="dif-label">Validação jurídica</div>
+        <div class="dif-statement">Modelos desenvolvidos e revisados por especialistas em Direito Societário.</div>
+        <div class="dif-example"><span>art. 1.031</span> &rarr; <span>citado</span></div>
       </div>
-      <div class="func-card">
-        <div class="func-index">02</div>
-        <h3>Saída de sócio por cessão de quotas</h3>
-        <p>Cessão total ou parcial: o sistema redistribui as quotas dos sócios remanescentes e gera a cláusula de responsabilidade do cedente conforme o Código Civil.</p>
-      </div>
-      <div class="func-card">
-        <div class="func-index">03</div>
-        <h3>Sociedade que virou unipessoal</h3>
-        <p>Quando resta um único sócio, o sistema troca automaticamente "os sócios resolvem" por "o sócio único delibera" — e ajusta toda a estrutura de administração.</p>
-      </div>
-      <div class="func-card">
-        <div class="func-index">04</div>
-        <h3>Atividade nova exige conselho de classe</h3>
-        <p>Empresa que passa a prestar serviço regulamentado? O sistema identifica o CNAE novo e insere a cláusula do conselho correspondente — OAB, CRC, CRM ou outro.</p>
-      </div>
-      <div class="func-card">
-        <div class="func-index">05</div>
-        <h3>Troca de sócio administrador</h3>
-        <p>Atualiza automaticamente quem representa a empresa ativa e passivamente, com a cláusula de poderes de administração correta para o novo responsável.</p>
-      </div>
-      <div class="func-card">
-        <div class="func-index">06</div>
-        <h3>Morte de sócio e a entrada da família</h3>
-        <p>O contrato define, desde a abertura, o que acontece: os herdeiros recebem os haveres e não entram, entram com aprovação dos remanescentes, ou entram de pleno direito. Com o critério de apuração e a forma de pagamento já escritos — antes de a família precisar deles.</p>
+      <div class="dif-row">
+        <div class="dif-label">Assinatura digital</div>
+        <div class="dif-statement">Envie o documento para assinatura eletrônica pela plataforma de sua preferência.</div>
+        <div class="dif-example"><span>ClickSign</span> · <span>D4Sign</span> · <span>ZapSign</span></div>
       </div>
     </div>
   </div>
@@ -765,8 +774,9 @@
 <section class="credibilidade">
   <div class="wrap">
     <div class="section-head">
-      <h2 class="section-title">Desenvolvido dentro de um escritório contábil. Não em uma startup.</h2>
-      <p class="section-sub">O Atos Societários foi feito especificamente para escritórios contábeis gerarem contratos de abertura, alteração e encerramento de empresas. Nasceu dentro de um escritório com mais de 35 anos de prática societária real, entre contadores e advogados que vivem as exigências das Juntas Comerciais e dos conselhos de classe todos os dias — não um problema imaginado em uma sala de reunião.</p>
+      <div class="eyebrow">Desenvolvido dentro de um escritório contábil</div>
+      <h2 class="section-title">Não foi desenhado em uma sala de reunião. Foi construído dentro da operação.</h2>
+      <p class="section-sub">O ATO nasceu dentro do departamento societário da EVICONT, escritório contábil com mais de 35 anos de atuação. Foi criado por quem enfrenta diariamente as exigências das Juntas Comerciais, dos órgãos de fiscalização profissional e de clientes que precisam de respostas rápidas. Cada funcionalidade surgiu para resolver um problema real da rotina societária.</p>
     </div>
   </div>
 </section>
@@ -775,25 +785,25 @@
 <section class="preco" id="preco">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Preço simples</div>
-      <h2 class="section-title">Um plano. Tudo liberado. Sem surpresas.</h2>
-      <p class="section-sub">Sem taxa de setup, sem funcionalidades bloqueadas, sem fidelidade. Assine, use e cancele quando quiser.</p>
+      <div class="eyebrow">Plano</div>
+      <h2 class="section-title">Um único plano. Tudo liberado. Sem surpresas.</h2>
     </div>
     <div class="preco-card">
       <div class="preco-eyebrow">Plano Profissional</div>
-      <div class="preco-valor">R$ 197<span>/mês</span></div>
-      <p class="preco-periodo">Cobrança mensal · 7 dias grátis, sem cartão de crédito</p>
+      <div class="preco-valor">R$ 197<span class="preco-periodo">/mês</span></div>
+      <p class="preco-foot-note">7 dias gratuitos · Sem cartão de crédito · Sem fidelidade</p>
       <ul class="preco-lista">
-        <li>Contratos ilimitados (Abertura, Alteração, Distrato)</li>
-        <li>Inteligência de CNAE — cláusulas automáticas por conselho de classe</li>
-        <li>Concordância automática de gênero e número</li>
-        <li>Contrato consolidado gerado a cada alteração</li>
-        <li>Contrato de prestação de serviços nos padrões do conselho de classe</li>
-        <li>Assinatura digital integrada (ClickSign, D4Sign ou ZapSign)</li>
-        <li>Proposta de honorários com identidade visual do escritório</li>
+        <li>Contratos societários ilimitados</li>
+        <li>Alterações contratuais ilimitadas</li>
+        <li>Consolidação automática</li>
+        <li>Inteligência regulatória por CNAE</li>
+        <li>Identidade visual do escritório</li>
+        <li>Propostas de honorários</li>
+        <li>Integração com assinatura digital</li>
+        <li>Atualizações jurídicas contínuas</li>
         <li>Suporte especializado</li>
       </ul>
-      <a href="https://app.useato.com.br/cadastro" class="btn btn-gold btn-block">Iniciar teste de 7 dias grátis</a>
+      <a class="btn btn-gold btn-block" href="https://app.useato.com.br/cadastro">Iniciar teste de 7 dias grátis</a>
       <p class="preco-trial">Cancele quando quiser. Sem fidelidade.</p>
     </div>
   </div>
@@ -801,10 +811,12 @@
 
 <!-- CTA FINAL -->
 <section class="cta-final">
-  <h2>Seu escritório tem expertise de 35 anos. Agora tem a tecnologia que combina com ela.</h2>
-  <p class="section-sub">Pare de perder horas com retrabalho que um sistema resolve em segundos. Seu cliente não quer esperar — e você não precisa mais fazer ele esperar.</p>
-  <a href="https://app.useato.com.br/cadastro" class="btn btn-gold">Testar grátis agora</a>
-  <p class="hero-note">Sem cartão · 7 dias grátis · Cancele quando quiser</p>
+  <div class="wrap">
+    <h2 class="section-title">Seu escritório levou décadas para construir credibilidade. Agora ele pode ter uma tecnologia à altura dessa história.</h2>
+    <p class="section-sub">Automatize o trabalho repetitivo, reduza erros e entregue contratos com mais rapidez — permitindo que sua equipe produza documentos com o mesmo padrão de qualidade, todos os dias.</p>
+    <a class="btn btn-gold" href="https://app.useato.com.br/cadastro">Comece seu teste gratuito de 7 dias</a>
+    <p class="hero-note">Sem cartão · 7 dias grátis · Cancele quando quiser</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
