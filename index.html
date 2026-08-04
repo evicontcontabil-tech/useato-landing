@@ -460,6 +460,10 @@
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
     font-size: 12.5px; color: #5C6B87;
   }
+  /* Quem vende. Esta é a página onde alguém decide comprar — a pessoa jurídica por trás da
+     marca tem de estar identificada aqui, não só nos Termos, depois do cadastro. */
+  .footer-legal { display: flex; flex-direction: column; gap: 5px; }
+  .footer-entidade { font-size: 11.5px; color: #4A5772; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 980px) {
@@ -842,7 +846,10 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 ATO. Todos os direitos reservados.</span>
+    <div class="footer-legal">
+      <span>© 2026 ATO. Todos os direitos reservados.</span>
+      <span class="footer-entidade">ATO INTELIGENTE TECNOLOGIA E AUDIOVISUAL LTDA · CNPJ 68.363.177/0001-96</span>
+    </div>
     <span>contato@useato.com.br</span>
   </div>
 </footer>
