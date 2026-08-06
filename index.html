@@ -468,10 +468,52 @@
   .footer-entidade { font-size: 11.5px; color: #4A5772; }
 
   /* ── RESPONSIVE ── */
+
+  /* ─── PERGUNTAS ─── */
+  .faq { padding: 96px 0; border-top: 1px solid var(--border); }
+  .faq-lista { max-width: 760px; margin: 0 auto; }
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    margin-bottom: 12px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .faq-item[open] { border-color: var(--border-strong); background: rgba(255,255,255,0.05); }
+  .faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 52px 18px 22px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    position: relative;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  /* O sinal indica o estado sem depender de imagem: + fechado, − aberto. */
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 22px; top: 50%; transform: translateY(-50%);
+    font-size: 20px; line-height: 1; color: var(--gold-light);
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item summary:hover { color: var(--gold-light); }
+  .faq-item p {
+    padding: 0 52px 20px 22px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+  .faq-item strong { color: var(--white); font-weight: 600; }
+  .faq-item em { color: var(--gold-light); font-style: normal; }
+
   @media (max-width: 980px) {
     .hero-grid { grid-template-columns: 1fr; }
     .hero-visual { max-width: 460px; margin: 0 auto; }
     .func-grid { grid-template-columns: repeat(2, 1fr); }
+    .faq { padding: 72px 0; }
     .passos { grid-template-columns: 1fr; gap: 36px; }
     .passo:not(:last-child)::after { display: none; }
     .dif-row { grid-template-columns: 1fr; gap: 10px; }
@@ -508,6 +550,7 @@
   <div class="nav-links">
     <a href="#funcionalidades">Funcionalidades</a>
     <a href="#preco">Preço</a>
+    <a href="#perguntas">Perguntas</a>
     <a href="https://app.useato.com.br">Entrar</a>
   </div>
   <a href="https://app.useato.com.br/cadastro" class="btn btn-gold nav-cta">Testar grátis</a>
@@ -684,8 +727,8 @@
       </div>
       <div class="func-card">
         <div class="func-index">03</div>
-        <h3>Contratos juridicamente estruturados</h3>
-        <p>Os modelos foram desenvolvidos e validados por advogados especialistas em Direito Empresarial e Societário, com profissionais que atuam diariamente na constituição e alteração de empresas. Você trabalha com documentos construídos para a prática — não com modelos genéricos.</p>
+        <h3>Revisado por advogado — e por máquina</h3>
+        <p>Escritos por especialistas em Direito Societário — e conferidos por máquina. Geramos centenas de contratos, em todas as combinações, e passamos um verificador estrutural em cada um. Foi assim que achamos, no nosso próprio gerador, um quórum de exclusão que deixaria uma minoria expulsar o sócio majoritário. No Word, um erro desses só aparece quando dois sócios brigam.</p>
       </div>
       <div class="func-card">
         <div class="func-index">04</div>
@@ -701,6 +744,21 @@
         <div class="func-index">06</div>
         <h3>Propostas de honorários profissionais</h3>
         <p>Além dos contratos, o sistema gera propostas comerciais elegantes, personalizadas com a identidade visual do escritório. Mais profissionalismo, mais agilidade, mais conversões.</p>
+      </div>
+      <div class="func-card">
+        <div class="func-index">07</div>
+        <h3>O cliente preenche. Você confere.</h3>
+        <p>Você envia um link com o timbre do seu escritório e o próprio cliente informa a qualificação dos sócios — nome, CPF, estado civil, endereço — e anexa os documentos. Nada entra no sistema antes de você conferir e aprovar. Acaba a transcrição de áudio de WhatsApp e foto de RG, que é onde o erro nasce.</p>
+      </div>
+      <div class="func-card">
+        <div class="func-index">08</div>
+        <h3>As empresas que você já atende</h3>
+        <p>Empresa que já existe entra pelo CNPJ, e você transcreve as cláusulas do contrato arquivado — a redação dela, não a nossa. É trabalho de uma vez só por empresa: a partir daí, toda alteração dela já sai consolidada sozinha.</p>
+      </div>
+      <div class="func-card">
+        <div class="func-index">09</div>
+        <h3>Todos os atos, não só a abertura</h3>
+        <p>Constituição, alteração contratual, entrada e saída de sócios, aumento de capital, transferência de sede para outro estado, distrato e encerramento. E, do lado comercial, proposta de honorários e contrato de prestação de serviços — com aditivos e distrato.</p>
       </div>
     </div>
   </div>
@@ -803,13 +861,57 @@
         <li>Consolidação automática</li>
         <li>Inteligência regulatória por CNAE</li>
         <li>Identidade visual do escritório</li>
+        <li>Link de coleta de dados com o cliente</li>
         <li>Propostas de honorários</li>
-        <li>Integração com assinatura digital</li>
+        <li>Conecta com a sua ClickSign, D4Sign ou ZapSign</li>
+        <li>Toda a sua equipe, sem cobrar por usuário</li>
         <li>Atualizações jurídicas contínuas</li>
         <li>Suporte especializado</li>
       </ul>
       <a class="btn btn-gold btn-block" href="https://app.useato.com.br/cadastro">Iniciar teste de 14 dias grátis</a>
       <p class="preco-trial">Cancele quando quiser. Sem fidelidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERGUNTAS — as objeções reais de quem avalia no self-service. Respostas honestas:
+     onde o sistema NÃO vai (protocolo na Junta, conta de assinatura) é dito com todas as
+     letras. Objeção que a página não responde, o contador responde sozinho — e sai. -->
+<section class="faq" id="perguntas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Perguntas</div>
+      <h2 class="section-title">O que todo contador pergunta antes de testar.</h2>
+    </div>
+    <div class="faq-lista">
+      <details class="faq-item">
+        <summary>Vocês protocolam na Junta Comercial?</summary>
+        <p>Não. O ATO produz o documento pronto para protocolo — assinado, consolidado e com o timbre do seu escritório. O protocolo continua sendo seu, no canal que você já usa. Nosso trabalho é garantir que o documento esteja <em>certo</em> antes de sair, que é onde a exigência nasce.</p>
+      </details>
+      <details class="faq-item">
+        <summary>E as empresas que eu já atendo há anos?</summary>
+        <p>Entram pelo CNPJ, e você transcreve as cláusulas do contrato arquivado — a redação do escritório que fez, não a nossa. É trabalho de uma vez só por empresa, e ele se paga na primeira alteração: dali em diante o consolidado se reconstrói sozinho. Nossa sugestão é começar o teste por uma abertura nova, que é onde a diferença aparece em minutos.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Preciso contratar assinatura digital à parte?</summary>
+        <p>Você usa a <strong>sua</strong> conta — ClickSign, D4Sign ou ZapSign —, colando um token nas Integrações. Não cobramos por assinatura nem por documento assinado, e não obrigamos ninguém a trocar de fornecedor: você mantém o preço que já negociou. E nada disso é pré-requisito para testar: dá para gerar, exportar e protocolar sem tocar em integração.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Os modelos servem para a Junta do meu estado?</summary>
+        <p>Os contratos são construídos sobre o Código Civil e sobre o Manual de Registro do DREI, que é nacional — e o instrumento cita a Junta da UF da sede, não uma fixa. Ainda assim, cada regional tem as suas exigências de balcão: quando você receber uma, registre no sistema. É assim que o ATO aprende as particularidades da sua praça.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Meu cliente vai ver a marca do ATO?</summary>
+        <p>Nunca. Contratos, propostas, o link de coleta de dados e os e-mails saem com o logo, a cor e os dados do <strong>seu</strong> escritório. Se você não subir um logo, o campo simplesmente não aparece — não colocamos o nosso no lugar.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Sou eu sozinho. Vale a pena?</summary>
+        <p>Uma alteração contratual costuma ser faturada entre R$ 500 e R$ 2.000. A mensalidade é menos que metade de um único serviço, com documentos ilimitados — e quem trabalha sozinho é justamente quem não tem um segundo par de olhos para revisar o contrato antes de protocolar.</p>
+      </details>
+      <details class="faq-item">
+        <summary>E se eu cancelar? Perco o que fiz?</summary>
+        <p>Cancelar encerra a recorrência e você continua com acesso até o fim do período que já pagou — não confiscamos o mês. O histórico societário das suas empresas fica guardado, e os documentos que você gerou já estão no seu computador desde o dia em que foram exportados.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -838,6 +940,7 @@
       <a href="#funcionalidades">Funcionalidades</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#preco">Preço</a>
+      <a href="#perguntas">Perguntas</a>
       <a href="https://app.useato.com.br/cadastro">Criar conta</a>
     </div>
     <div class="footer-links">
