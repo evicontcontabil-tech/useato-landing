@@ -509,6 +509,23 @@
   .faq-item strong { color: var(--white); font-weight: 600; }
   .faq-item em { color: var(--gold-light); font-style: normal; }
 
+
+  /* Preço de fundador: o valor cheio riscado ao lado é o que faz o desconto significar alguma coisa. */
+  .preco-cheio {
+    font-size: 0.5em; color: var(--text-secondary);
+    text-decoration: line-through; margin-right: 10px; font-weight: 500;
+  }
+  .preco-vagas {
+    display: inline-block;
+    margin: 14px 0 4px;
+    padding: 7px 14px; border-radius: 999px;
+    background: var(--gold-dim); border: 1px solid rgba(184,150,46,0.35);
+    color: var(--gold-light);
+    font-size: 13px; font-weight: 600;
+  }
+  .preco-vagas strong { color: var(--white); }
+  .preco-vagas.esgotado { background: rgba(255,255,255,0.05); border-color: var(--border); color: var(--text-secondary); }
+
   @media (max-width: 980px) {
     .hero-grid { grid-template-columns: 1fr; }
     .hero-visual { max-width: 460px; margin: 0 auto; }
@@ -849,11 +866,18 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Plano</div>
-      <h2 class="section-title">Um único plano. Tudo liberado. Sem surpresas.</h2>
+      <h2 class="section-title">Seja um Escritório Fundador.</h2>
+      <p class="section-sub">Estou acompanhando pessoalmente cada escritório desta primeira leva. Não consigo fazer isso para duzentos — por isso são 30 vagas.</p>
     </div>
     <div class="preco-card">
       <div class="preco-eyebrow">Plano Profissional</div>
-      <div class="preco-valor">R$ 297<span class="preco-periodo">/mês</span></div>
+      <div class="preco-valor">
+        <span class="preco-cheio" data-preco-cheio>R$ 599</span>
+        <span data-preco-atual>R$ 297</span><span class="preco-periodo">/mês</span>
+      </div>
+      <!-- O contador vem do banco (usos do cupom de fundador). Sem resposta da API, este texto
+           estático permanece: a página nunca fica com um número errado nem com um espaço vazio. -->
+      <p class="preco-vagas" data-vagas>30 vagas · o valor fica travado enquanto você mantiver a assinatura</p>
       <p class="preco-foot-note">14 dias gratuitos · Sem cartão de crédito · Sem fidelidade</p>
       <ul class="preco-lista">
         <li>Contratos societários ilimitados</li>
@@ -868,7 +892,7 @@
         <li>Atualizações jurídicas contínuas</li>
         <li>Suporte especializado</li>
       </ul>
-      <a class="btn btn-gold btn-block" href="https://app.useato.com.br/cadastro">Iniciar teste de 14 dias grátis</a>
+      <a class="btn btn-gold btn-block" href="https://app.useato.com.br/cadastro">Garantir minha vaga — 14 dias grátis</a>
       <p class="preco-trial">Cancele quando quiser. Sem fidelidade.</p>
     </div>
   </div>
@@ -959,5 +983,39 @@
   </div>
 </footer>
 
+
+<!-- VAGAS DE FUNDADOR, ao vivo.
+     Escassez que se pode CONFERIR vale mais que escassez afirmada — e quando a 30ª vaga é ocupada,
+     o número fecha sozinho aqui e na tela de pagamento, sem ninguém precisar lembrar de atualizar.
+     Falha em silêncio de propósito: sem resposta, a página fica com o texto estático de 30 vagas. -->
+<script>
+(function () {
+  var alvo = document.querySelector('[data-vagas]');
+  if (!alvo || !window.fetch) return;
+  fetch('https://app.useato.com.br/api/assinatura/vagas-fundador')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d) return;
+      var cheio = document.querySelector('[data-preco-cheio]');
+      if (cheio && d.preco_cheio) cheio.textContent = 'R$ ' + Math.round(d.preco_cheio);
+      if (!d.ativo) {
+        /* Vagas esgotadas: o card TEM de parar de anunciar R$ 297. Deixar o riscado e o preço de
+           fundador no ar seria prometer um valor que ninguém mais consegue — a mesma isca que este
+           mecanismo existe para evitar do outro lado, na tela de pagamento. */
+        alvo.className = 'preco-vagas esgotado';
+        alvo.textContent = 'As 30 vagas de fundador foram preenchidas';
+        if (cheio) cheio.style.display = 'none';
+        var atual = document.querySelector('[data-preco-atual]');
+        if (atual && d.preco_cheio) atual.textContent = 'R$ ' + Math.round(d.preco_cheio);
+        return;
+      }
+      if (typeof d.vagas_restantes === 'number') {
+        alvo.innerHTML = 'Restam <strong>' + d.vagas_restantes + '</strong> de ' + d.vagas_totais +
+          ' vagas · o valor fica travado enquanto você mantiver a assinatura';
+      }
+    })
+    .catch(function () { /* texto estático permanece */ });
+})();
+</script>
 </body>
 </html>
