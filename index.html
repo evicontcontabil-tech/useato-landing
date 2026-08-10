@@ -361,6 +361,13 @@
   .func-index { font-family: var(--serif); font-size: 13px; color: var(--gold-light); margin-bottom: 16px; }
   .func-card h3 { font-family: var(--sans); font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: 0; }
   .func-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+  /* O card em LARGURA TOTAL não é enfeite: são 9 cards num grid de 3 colunas, e um décimo comum
+     ficaria sozinho na quarta linha, lendo como sobra. Ocupando a linha inteira, o que era desalinho
+     vira destaque — e sem um selo "Novo", que envelhece: quem chega aqui pela primeira vez nunca viu
+     a versão anterior, e alguém teria de lembrar de removê-lo depois. */
+  .func-card--largo { grid-column: 1 / -1; border-color: rgba(217,188,111,0.28); }
+  .func-card--largo h3 { font-size: 18px; }
+  .func-card--largo p { max-width: 76ch; }
 
   /* ── COMO FUNCIONA ── */
   .como-funciona { padding: 110px 48px; background: var(--navy-deep); }
@@ -777,6 +784,11 @@
         <h3>As empresas que você já atende</h3>
         <p>Empresa que já existe entra pelo CNPJ, e você transcreve as cláusulas do contrato arquivado — a redação dela, não a nossa. É trabalho de uma vez só por empresa: a partir daí, toda alteração dela já sai consolidada sozinha.</p>
       </div>
+      <div class="func-card func-card--largo">
+        <div class="func-index">10</div>
+        <h3>Empresário Individual vira Sociedade Limitada</h3>
+        <p>O cliente cresceu, quer admitir um sócio ou separar o patrimônio dele do da empresa. No Word são dois documentos montados do zero — o instrumento de transformação e um contrato social inteiro. Aqui você digita o CNPJ e os dois saem juntos, prontos para protocolo. O CNPJ é preservado: a empresa não nasce de novo, e o contrato registra que ela sucedeu o empresário e assumiu as obrigações dele. O acervo apurado é conciliado com o novo capital social, para que as duas peças não afirmem números diferentes sobre o mesmo dinheiro. E o nome do MEI, que vem do registro com o CPF na frente, aparece assim onde é nome empresarial — e sem o número onde quem assina é a pessoa.</p>
+      </div>
     </div>
     </div>
   </div>
@@ -798,8 +810,8 @@
              um contador experiente levantar a sobrancelha — transferência de sede para outro estado
              é troca de Junta Comercial e NIRE novo, e poucos sistemas tratam isso. -->
         <p>Constituição, alteração contratual, entrada e saída de sócios, aumento de capital,
-        transferência de sede para outro estado, distrato e encerramento. O sistema conduz todo o
-        preenchimento.</p>
+        transferência de sede para outro estado, transformação de empresário individual em limitada,
+        distrato e encerramento. O sistema conduz todo o preenchimento.</p>
       </div>
       <div class="passo">
         <div class="passo-num">2</div>
