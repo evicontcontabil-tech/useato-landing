@@ -168,8 +168,8 @@
   }
 
   /* ── VÍDEO ─────────────────────────────────────────────────────────────────
-     É uma FACHADA: enquanto ninguém clica, NENHUMA requisição sai para o Google. O <iframe> só
-     nasce no play. Sem isso, todo visitante da landing seria anunciado ao YouTube — inclusive
+     É uma FACHADA: enquanto ninguém clica, NENHUMA requisição sai para o Vimeo. O <iframe> só
+     nasce no play. Sem isso, todo visitante da landing seria anunciado à plataforma — inclusive
      quem nunca vai apertar o play. Mesmo padrão do player de videoaula do app. */
   .video { padding: 96px 48px; background: var(--navy); text-align: center; }
   .video h2 { font-family: var(--serif); font-size: 34px; margin-bottom: 12px; }
@@ -725,17 +725,21 @@
 
 <!-- CONTRASTE -->
 <!-- ═══ VÍDEO ═══════════════════════════════════════════════════════════════════
-     PARA PUBLICAR O VÍDEO: cole o ID do YouTube em data-video-id, abaixo. É o trecho depois de
-     "v=" no endereço (https://www.youtube.com/watch?v=<ID>) ou depois da barra em youtu.be/<ID>.
-     Opcional: data-capa="capa-video.jpg" para a imagem de capa (senão fica o fundo navy).
+     PARA PUBLICAR O VÍDEO: cole o ID do VIMEO em data-video-id, abaixo. É o número no fim do
+     endereço (https://vimeo.com/<ID>) — só os dígitos, sem o "?share=..." que o botão Copiar link
+     acrescenta. Opcional: data-capa="capa-video.jpg" para a capa (senão fica o fundo navy).
 
-     ⚠️ O vídeo precisa estar PÚBLICO ou NÃO LISTADO **e permitir incorporação** (no YouTube:
-     Editar vídeo → Mais opções). Com a incorporação desligada, o player carrega e recusa o play
-     dizendo apenas que o vídeo não está disponível — dentro da nossa página, sem dizer por quê.
+     ⚠️ O ID do Vimeo é NUMÉRICO (10 dígitos); o do YouTube tinha 11 caracteres com letras. A
+     validação abaixo mudou junto. Colar um ID no formato errado não dá erro: a seção se REMOVE,
+     e a landing fica sem vídeo sem nada acusar.
+
+     ⚠️ O vídeo precisa permitir INCORPORAÇÃO (Vimeo: Settings → Embed → Where can this be
+     embedded). Bloqueada, o player carrega e recusa o play dentro da nossa página, sem dizer
+     por quê.
 
      Enquanto o ID não for preenchido, a seção se REMOVE sozinha: publicar uma moldura vazia é
      pior que não ter vídeo nenhum. ═══════════════════════════════════════════════════════════ -->
-<section class="video" id="video" data-video-id="Ze-K3PLF4Gw" data-capa="capa-vsl.jpg" hidden>
+<section class="video" id="video" data-video-id="1223337390" data-capa="capa-vsl.jpg" hidden>
   <h2>Em dois minutos, o ATO redigindo um contrato</h2>
   <p class="video-sub">O sistema redige, revisa e consolida — e você confere antes de qualquer assinatura.</p>
   <div class="video-moldura">
@@ -1110,9 +1114,9 @@
 
    Os atributos do iframe não são decorativos, e um deles já custou caro no app:
    ⚠️ referrerpolicy é "strict-origin-when-cross-origin", NUNCA "no-referrer". O endurecimento
-   óbvio QUEBRA todos os vídeos — o YouTube exige a origem para autorizar a incorporação e devolve
-   "Erro 153 — erro de configuração do player". Medido no Chromium em 22/08/2026, contra o YouTube
-   de verdade, com e sem sandbox.
+   óbvio QUEBRA todos os vídeos — a plataforma exige a origem para autorizar a incorporação (no
+   YouTube devolvia "Erro 153"; o Vimeo usa a origem para a mesma checagem e para a restrição por
+   domínio). Medido no Chromium em 22/08/2026 contra o YouTube, e em 02/09/2026 contra o Vimeo.
    ⚠️ sandbox sem allow-top-navigation: o iframe não troca a página por baixo de quem assiste. */
 (function () {
   var sec = document.getElementById('video');
@@ -1121,7 +1125,7 @@
   var id = (sec.getAttribute('data-video-id') || '').trim();
   /* Sem ID, a seção não existe. Uma moldura vazia na landing lê como site quebrado — e quem
      desconfia do site não cria conta. */
-  if (!/^[A-Za-z0-9_-]{11}$/.test(id)) { sec.remove(); return; }
+  if (!/^[0-9]{6,12}$/.test(id)) { sec.remove(); return; }
 
   sec.hidden = false;
 
@@ -1131,10 +1135,11 @@
 
   fachada.addEventListener('click', function () {
     var f = document.createElement('iframe');
-    /* youtube-nocookie: modo privacidade, sem cookie de rastreamento. */
-    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1';
+    /* dnt=1: o equivalente Vimeo do youtube-nocookie — sem cookie de rastreamento.
+       title/byline/portrait em 0: o player não estampa o título nem o autor por cima do vídeo. */
+    f.src = 'https://player.vimeo.com/video/' + id + '?dnt=1&autoplay=1&title=0&byline=0&portrait=0&like=0&watchlater=0&share=0&badge=0';
     f.title = 'Em dois minutos, o ATO redigindo um contrato';
-    f.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
     f.referrerPolicy = 'strict-origin-when-cross-origin';
     f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation');
     f.setAttribute('allowfullscreen', '');
