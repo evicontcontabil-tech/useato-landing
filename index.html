@@ -1213,7 +1213,16 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
         if (typeof fbq === 'function') fbq('trackCustom', 'ViewPrecos');
         obs.disconnect();
       });
-    }, { threshold: 0.5 });
+      /* ⚠️ NÃO volte para `threshold: 0.5`. MEDIDO num celular: a seção de preço tem 1422px e a
+         viewport, 543px — no máximo 38% dela cabe na tela de uma vez. Pedir 50% exigiria 711px
+         úteis só para esta seção, o que nenhum celular tem e a maioria dos notebooks também não.
+         O evento estava implementado, testado e no ar, e era MATEMATICAMENTE incapaz de disparar:
+         nenhum erro, nenhum log, o teste passando.
+
+         Com `threshold: 0` e a margem negativa embaixo, a área de detecção encolhe 25% e o disparo
+         acontece quando a seção cruza os três quartos superiores da tela — independe da altura
+         dela, e vale em qualquer resolução. */
+    }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
     obs.observe(alvo);
   }
 
