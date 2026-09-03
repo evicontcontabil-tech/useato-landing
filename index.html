@@ -639,7 +639,7 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
     <a href="#perguntas">Perguntas</a>
     <a href="https://app.useato.com.br">Entrar</a>
   </div>
-  <a href="https://app.useato.com.br/cadastro" class="btn btn-gold nav-cta">Testar grátis</a>
+  <a href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="nav" class="btn btn-gold nav-cta">Testar grátis</a>
 </nav>
 
 <!-- HERO -->
@@ -652,7 +652,7 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
       <p class="lead lead-sec">O ATO não é um mero editor de textos: é a plataforma que audita o documento antes de ele sair e mantém o estado societário vivo de cada empresa — permitindo que toda a equipe trabalhe no mesmo padrão de excelência.</p>
 
       <div class="hero-ctas">
-        <a class="btn btn-gold" href="https://app.useato.com.br/cadastro">Teste gratuitamente por 14 dias</a>
+        <a class="btn btn-gold" href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="hero">Teste gratuitamente por 14 dias</a>
         <a class="btn btn-ghost" href="#como-funciona">Ver como funciona</a>
       </div>
       <p class="hero-note">Sem cartão de crédito · Cancele quando quiser</p>
@@ -998,7 +998,7 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
         <li>Toda a sua equipe, sem cobrar por usuário</li>
         <li>Atualizações jurídicas contínuas e suporte especializado</li>
       </ul>
-      <a class="btn btn-gold btn-block" href="https://app.useato.com.br/cadastro">Garantir minha vaga — 14 dias grátis</a>
+      <a class="btn btn-gold btn-block" href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="preco">Garantir minha vaga — 14 dias grátis</a>
       <p class="preco-trial">Cancele quando quiser. Sem fidelidade.</p>
     </div>
   </div>
@@ -1055,7 +1055,7 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
   <div class="wrap">
     <h2 class="section-title">Seu escritório levou décadas para construir credibilidade. Agora ele pode ter uma tecnologia à altura dessa história.</h2>
     <p class="section-sub">Proteja a credibilidade que seu escritório levou décadas para construir. Delegue a operação do societário com segurança, elimine o retrabalho de revisão e entregue contratos com precisão técnica todos os dias.</p>
-    <a class="btn btn-gold" href="https://app.useato.com.br/cadastro">Comece seu teste gratuito de 14 dias</a>
+    <a class="btn btn-gold" href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="cta-final">Comece seu teste gratuito de 14 dias</a>
     <p class="hero-note">Sem cartão · 14 dias grátis · Cancele quando quiser</p>
   </div>
 </section>
@@ -1075,7 +1075,7 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
       <a href="#como-funciona">Como funciona</a>
       <a href="#preco">Preço</a>
       <a href="#perguntas">Perguntas</a>
-      <a href="https://app.useato.com.br/cadastro">Criar conta</a>
+      <a href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="rodape">Criar conta</a>
     </div>
     <div class="footer-links">
       <h4>Legal</h4>
@@ -1162,6 +1162,41 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
     f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation');
     f.setAttribute('allowfullscreen', '');
     fachada.replaceWith(f);
+  });
+})();
+</script>
+<script>
+/* EVENTOS DE CONVERSÃO DA LANDING (Meta Pixel).
+   Os dois são `trackCustom`: não são eventos padrão da Meta, e precisam ser registrados
+   como conversões personalizadas no Gerenciador de Eventos para virarem otimizáveis.
+
+   ⚠️ A seção de preço é ÂNCORA na mesma página (#preco), não uma rota — o pixel não tem
+   como observá-la sozinho. Daí o IntersectionObserver.
+
+   ⚠️ Toda chamada checa `typeof fbq === 'function'`: com bloqueador de anúncio, o
+   fbevents.js não carrega e `fbq` fica indefinido. Sem a checagem, o clique no CTA
+   estoura antes de a navegação acontecer — rastreamento derrubando a conversão que ele
+   existe para medir. */
+(function () {
+  /* ViewPrecos — uma vez, quando metade da seção de preço aparece. */
+  var alvo = document.getElementById('preco');
+  if (alvo && 'IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        if (typeof fbq === 'function') fbq('trackCustom', 'ViewPrecos');
+        obs.disconnect();
+      });
+    }, { threshold: 0.5 });
+    obs.observe(alvo);
+  }
+
+  /* IniciouCadastro — clique em qualquer CTA de teste.
+     Delegado no documento: CTA novo só precisa nascer com data-cta="trial". */
+  document.addEventListener('click', function (ev) {
+    var el = ev.target.closest && ev.target.closest('[data-cta="trial"]');
+    if (!el || typeof fbq !== 'function') return;
+    fbq('trackCustom', 'IniciouCadastro', { origem: el.dataset.origem || 'desconhecida' });
   });
 })();
 </script>
