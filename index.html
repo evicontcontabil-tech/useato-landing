@@ -1178,6 +1178,32 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
    estoura antes de a navegação acontecer — rastreamento derrubando a conversão que ele
    existe para medir. */
 (function () {
+  /* O CLIQUE NO ANÚNCIO, repassado ao app — e este bloco roda MESMO COM BLOQUEADOR, porque é
+     script nosso, na nossa origem. É o que o torna útil: com bloqueador o fbevents.js não carrega,
+     o cookie _fbc nunca é escrito, e o cadastro chegaria à Meta sem ligação nenhuma com a campanha
+     — justamente o público que a API de Conversões existe para alcançar. O fbclid vem na URL do
+     anúncio e não depende de script de terceiro nenhum.
+
+     Guardado em sessionStorage porque o contador costuma navegar pela página antes de clicar no
+     CTA, e a query só existe na primeira carga. Quem monta o "fb.1.<ts>.<fbclid>" é o SERVIDOR, no
+     envio — e o cookie do pixel, quando existe, continua vencendo: ele tem o timestamp do clique
+     real, o sintético só tem a hora do cadastro. */
+  try {
+    var fbclid = new URLSearchParams(location.search).get('fbclid');
+    if (fbclid && fbclid.length <= 255) sessionStorage.setItem('ato_fbclid', fbclid);
+    else fbclid = sessionStorage.getItem('ato_fbclid');
+
+    if (fbclid) {
+      var links = document.querySelectorAll('a[href*="app.useato.com.br"]');
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute('href');
+        if (href.indexOf('fbclid=') >= 0) continue;
+        links[i].setAttribute('href', href + (href.indexOf('?') >= 0 ? '&' : '?') + 'fbclid=' + encodeURIComponent(fbclid));
+      }
+    }
+  } catch (e) { /* sessionStorage estoura em janela privada e com cookies bloqueados; perder
+                   atribuição é aceitável, quebrar a página no primeiro script não. */ }
+
   /* ViewPrecos — uma vez, quando metade da seção de preço aparece. */
   var alvo = document.getElementById('preco');
   if (alvo && 'IntersectionObserver' in window) {
