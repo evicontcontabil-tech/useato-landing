@@ -3,8 +3,27 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ATO — Pare de revisar cada contrato do seu departamento societário</title>
+<title>ATO — Seu escritório não cresce mais do que você consegue conferir</title>
 <meta name="description" content="O ATO audita o documento societário antes de ele sair e mantém o estado societário vivo de cada empresa — para que sua equipe produza aberturas e alterações com segurança, no timbre do seu escritório." />
+<link rel="canonical" href="https://useato.com.br/" />
+<!-- Open Graph / Twitter: a página não tinha NENHUMA tag social. Sem elas, todo link
+     compartilhado em WhatsApp, LinkedIn ou Slack aparecia como URL nua — e um link sem
+     cartão é um link que ninguém abre. `og:image` usa a capa 1280x720, que já está no
+     repositório e atende o mínimo de 1200x630 dos dois. URLs ABSOLUTAS: caminho relativo
+     não é resolvido por nenhum dos leitores. -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ATO" />
+<meta property="og:url" content="https://useato.com.br/" />
+<meta property="og:title" content="Seu escritório não cresce mais do que você consegue conferir" />
+<meta property="og:description" content="O ATO tira o detalhe da mão humana: sua equipe produz, o sistema confere antes de o documento sair, e cada alteração já nasce consolidada. 14 dias grátis, sem cartão." />
+<meta property="og:image" content="https://useato.com.br/capa-vsl.jpg" />
+<meta property="og:image:width" content="1280" />
+<meta property="og:image:height" content="720" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Seu escritório não cresce mais do que você consegue conferir" />
+<meta name="twitter:description" content="O ATO tira o detalhe da mão humana: sua equipe produz, o sistema confere antes de o documento sair, e cada alteração já nasce consolidada." />
+<meta name="twitter:image" content="https://useato.com.br/capa-vsl.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
@@ -166,6 +185,10 @@
     max-width: 520px; margin-bottom: 36px;
     line-height: 1.75;
   }
+  /* O PIVÔ da dobra: é a frase que sai do problema e entra na saída. Fica mais clara que o
+     parágrafo do problema acima e que o do produto abaixo — se os três tiverem o mesmo peso,
+     nenhum é lido. Cor, não tamanho: aumentar a fonte competiria com a manchete. */
+  .hero p.lead-virada { color: #D6DCE8; }
 
   /* ── VÍDEO ─────────────────────────────────────────────────────────────────
      É uma FACHADA: enquanto ninguém clica, NENHUMA requisição sai para o Vimeo. O <iframe> só
@@ -210,6 +233,15 @@
     border-color: transparent transparent transparent var(--navy-deep);
   }
   .video-nota { font-size: 13.5px; color: var(--text-secondary); margin-top: 20px; }
+
+  /* ── PROVA (promovida da posição 3 de 10) ── */
+  .prova { padding: 64px 48px; background: var(--navy); }
+  .prova .wrap { max-width: 760px; }
+  .prova-texto {
+    font-size: 17px; line-height: 1.8; color: #D6DCE8;
+    border-left: 3px solid var(--gold); padding-left: 26px;
+  }
+  .prova-texto strong { color: var(--gold-light); font-weight: 600; }
 
   /* ── CONTRASTE (Word × ATO) ── */
   .contraste { padding: 96px 48px; background: var(--navy); }
@@ -588,10 +620,22 @@
     .dif-example { justify-self: flex-start; }
   }
   @media (max-width: 640px) {
-    .wrap, nav, .hero, .video, .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
+    .wrap, nav, .hero, .prova, .video, .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
     nav { padding-top: 0; padding-bottom: 0; }
     .nav-links { display: none; }
     .hero { padding-top: 48px; padding-bottom: 72px; }
+    /* ⚠️ MEDIDO no Chromium a 390x844 (o tamanho de celular mais comum, e 95% do tráfego pago é
+       mobile): com a dobra nova o botão do hero nascia em y=975 — 131px ABAIXO da primeira tela.
+       O texto veio do briefing e não se corta, então o espaço sai do ESPAÇAMENTO: sobe o botão de
+       y=975 para y=842. ⚠️ AINDA NÃO CABE INTEIRO num iPhone 12/13/14 (844px) — o texto é longo
+       demais para isso, e espremer mais degradaria a leitura, que é a aposta da mudança. O que
+       garante um caminho sempre visível é o CTA do <nav>, que é STICKY (data-origem="nav", medido).
+       Ao mexer nestes números, MEÇA de novo — deduzir do CSS não diz em que pixel o botão cai. */
+    .hero { padding-top: 28px; }
+    .hero-eyebrow { margin-bottom: 12px; font-size: 11px; letter-spacing: 0.12em; }
+    .hero h1 { margin-bottom: 18px; }
+    .hero p.lead { font-size: 16.5px; line-height: 1.62; margin-bottom: 14px; }
+    .hero p.lead-sec { margin-bottom: 24px; }
     .video, .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco { padding-top: 72px; padding-bottom: 72px; }
     .cta-final { padding-top: 88px; padding-bottom: 88px; }
     .func-grid { grid-template-columns: 1fr; }
@@ -647,12 +691,20 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
   <div class="hero-grid">
     <div>
       <div class="hero-eyebrow">Para escritórios contábeis e advocatícios</div>
-      <h1>Pare de revisar cada contrato que sai do seu departamento societário.</h1>
-      <p class="lead">Permita que sua equipe produza aberturas e alterações contratuais com segurança.</p>
-      <p class="lead lead-sec">O ATO não é um mero editor de textos: é a plataforma que audita o documento antes de ele sair e mantém o estado societário vivo de cada empresa — permitindo que toda a equipe trabalhe no mesmo padrão de excelência.</p>
+      <!-- ⚠️ ESTA MANCHETE É A FRASE QUE ENCERRA O VÍDEO DO ANÚNCIO, e não é escolha de estilo:
+           95% do tráfego pago chega com ela na cabeça e precisa reencontrá-la na primeira linha.
+           Reescrever aqui sem reescrever o criativo quebra a continuidade e a pessoa recomeça do
+           zero. Vocabulário BANIDO nesta dobra: "departamento societário" (o público é dono de
+           escritório de 3 a 10 pessoas — não tem departamento, tem uma pessoa ou ele mesmo),
+           "plataforma", "solução", "automatizar", "otimizar", "produtividade", "eficiência",
+           "escalabilidade", "padrão de excelência", "tecnologia de ponta". -->
+      <h1>Seu escritório não cresce mais do que você consegue conferir.</h1>
+      <p class="lead">Todo contrato passa por você antes de sair. Não é desconfiança da equipe — é que os detalhes é que pegam, e quando escapa um, quem recebe a ligação do cliente é você. Enquanto for assim, o tamanho do escritório é o tamanho da sua agenda.</p>
+      <p class="lead lead-virada">Existe um jeito de deixar de ser a última conferência do próprio escritório sem baixar em nada o padrão que você levou anos construindo.</p>
+      <p class="lead lead-sec">O ATO tira o detalhe da mão humana. Sua equipe produz, o sistema confere antes de o documento sair, e cada alteração já nasce consolidada — com a redação do contrato daquela empresa, não com um modelo nosso por cima.</p>
 
       <div class="hero-ctas">
-        <a class="btn btn-gold" href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="hero">Teste gratuitamente por 14 dias</a>
+        <a class="btn btn-gold" href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="hero">Testar grátis por 14 dias</a>
         <a class="btn btn-ghost" href="#como-funciona">Ver como funciona</a>
       </div>
       <p class="hero-note">Sem cartão de crédito · Cancele quando quiser</p>
@@ -738,6 +790,24 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ PROVA ═══════════════════════════════════════════════════════════════════
+     ⚠️ PROMOVIDO DA POSIÇÃO 3 DE 10 (era um card dentro de "Soluções") PARA LOGO ABAIXO DA DOBRA.
+     É a prova mais forte da página e quase ninguém rolava até lá. A história é específica e
+     verificável — um defeito REAL que o nosso próprio linter achou no NOSSO gerador —, e é isso
+     que a separa de "qualidade" genérica: ninguém inventa esse tipo de detalhe.
+     Curto de propósito: um parágrafo entre a dobra e a primeira seção de funcionalidade. Se
+     virar uma seção com título, subtítulo e grid, deixa de ser prova e vira mais uma seção. -->
+<section class="prova">
+  <div class="wrap">
+    <p class="prova-texto">
+      A gente testa o próprio gerador contra centenas de combinações de contrato antes de qualquer
+      versão ir para o ar. Foi assim que encontramos, <strong>no nosso próprio sistema</strong>, um
+      quórum de exclusão que deixaria a minoria expulsar o sócio majoritário. No Word, um erro
+      desses só aparece quando dois sócios brigam.
+    </p>
   </div>
 </section>
 
@@ -840,7 +910,7 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
       <div class="func-card">
         <div class="func-index">03</div>
         <h3>Revisado por advogado — e por máquina</h3>
-        <p>Escritos por especialistas em Direito Societário — e conferidos por máquina. Geramos centenas de contratos, em todas as combinações, e passamos um verificador estrutural em cada um. Foi assim que achamos, no nosso próprio gerador, um quórum de exclusão que deixaria uma minoria expulsar o sócio majoritário. No Word, um erro desses só aparece quando dois sócios brigam.</p>
+        <p>Escritos por especialistas em Direito Societário — e conferidos por máquina. Geramos centenas de contratos, em todas as combinações, e passamos um verificador estrutural em cada um antes de qualquer versão ir para o ar.</p>
       </div>
       <div class="func-card">
         <div class="func-index">04</div>
