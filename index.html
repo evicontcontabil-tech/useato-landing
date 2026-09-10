@@ -178,13 +178,6 @@
     max-width: 480px; margin-bottom: 20px;
     line-height: 1.75;
   }
-  /* Segundo parágrafo do hero: o texto institucional. Menor e mais discreto — a primeira frase é a
-     promessa, esta é a credencial. Se as duas tiverem o mesmo peso, nenhuma é lida. */
-  .hero p.lead-sec {
-    font-size: 15px; color: var(--text-secondary); opacity: 0.85;
-    max-width: 520px; margin-bottom: 36px;
-    line-height: 1.75;
-  }
   /* O PIVÔ da dobra: é a frase que sai do problema e entra na saída. Fica mais clara que o
      parágrafo do problema acima e que o do produto abaixo — se os três tiverem o mesmo peso,
      nenhum é lido. Cor, não tamanho: aumentar a fonte competiria com a manchete. */
@@ -234,8 +227,16 @@
   }
   .video-nota { font-size: 13.5px; color: var(--text-secondary); margin-top: 20px; }
 
+  /* ── O QUE O ATO FAZ (saiu da dobra por medição — ver comentário no HTML) ── */
+  .produto { padding: 72px 48px 0; background: var(--navy); }
+  .produto .wrap { max-width: 760px; }
+  .produto-texto {
+    font-family: var(--serif);
+    font-size: clamp(21px, 2.4vw, 27px); line-height: 1.55; color: var(--white);
+  }
+
   /* ── PROVA (promovida da posição 3 de 10) ── */
-  .prova { padding: 64px 48px; background: var(--navy); }
+  .prova { padding: 40px 48px 72px; background: var(--navy); }
   .prova .wrap { max-width: 760px; }
   .prova-texto {
     font-size: 17px; line-height: 1.8; color: #D6DCE8;
@@ -620,22 +621,30 @@
     .dif-example { justify-self: flex-start; }
   }
   @media (max-width: 640px) {
-    .wrap, nav, .hero, .prova, .video, .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
+    .wrap, nav, .hero, .produto, .prova, .video, .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco, .cta-final { padding-left: 20px; padding-right: 20px; }
     nav { padding-top: 0; padding-bottom: 0; }
     .nav-links { display: none; }
     .hero { padding-top: 48px; padding-bottom: 72px; }
-    /* ⚠️ MEDIDO no Chromium a 390x844 (o tamanho de celular mais comum, e 95% do tráfego pago é
-       mobile): com a dobra nova o botão do hero nascia em y=975 — 131px ABAIXO da primeira tela.
-       O texto veio do briefing e não se corta, então o espaço sai do ESPAÇAMENTO: sobe o botão de
-       y=975 para y=842. ⚠️ AINDA NÃO CABE INTEIRO num iPhone 12/13/14 (844px) — o texto é longo
-       demais para isso, e espremer mais degradaria a leitura, que é a aposta da mudança. O que
-       garante um caminho sempre visível é o CTA do <nav>, que é STICKY (data-origem="nav", medido).
-       Ao mexer nestes números, MEÇA de novo — deduzir do CSS não diz em que pixel o botão cai. */
-    .hero { padding-top: 28px; }
-    .hero-eyebrow { margin-bottom: 12px; font-size: 11px; letter-spacing: 0.12em; }
-    .hero h1 { margin-bottom: 18px; }
-    .hero p.lead { font-size: 16.5px; line-height: 1.62; margin-bottom: 14px; }
-    .hero p.lead-sec { margin-bottom: 24px; }
+    /* ⚠️ MEDIDO no Chromium, e estes números são o contrato desta media query. O objetivo é o
+       botão do hero INTEIRO na primeira tela — inclusive nos 704px que sobram dentro do navegador
+       do Instagram depois da barra do app, que é por onde vem 95% do tráfego pago.
+
+         antes do corte do parágrafo do produto ... botão em y=975 (131px fora dos 844)
+         com o parágrafo movido para fora .......... y=670
+         com este espaçamento ...................... y=602
+
+         390x844 ✅ folga 187px    390x704 ✅ folga 47px    375x667 ✅ folga 10px
+         360x600 ❌ (fora por 2px — Instagram em tela pequena; não vale degradar tudo por ele)
+
+       ⚠️ A folga do iPhone SE é de 10px: mexer em QUALQUER número daqui o joga para fora. E o
+       `font-size: 34px` do h1 não é estética — é o que faz a manchete caber em 3 linhas em vez de
+       4, e sozinho vale 46px. MEÇA depois de mexer; deduzir do CSS não diz em que pixel o botão
+       cai, e esta página já provou isso duas vezes. */
+    .hero { padding-top: 20px; }
+    .hero-eyebrow { margin-bottom: 10px; font-size: 11px; letter-spacing: 0.12em; }
+    .hero h1 { font-size: 34px; margin-bottom: 14px; }
+    .hero p.lead { font-size: 16.5px; line-height: 1.62; margin-bottom: 12px; }
+    .hero p.lead-virada { margin-bottom: 20px; }
     .video, .contraste, .problema, .funcionalidades, .como-funciona, .diferenciais, .credibilidade, .preco { padding-top: 72px; padding-bottom: 72px; }
     .cta-final { padding-top: 88px; padding-bottom: 88px; }
     .func-grid { grid-template-columns: 1fr; }
@@ -701,8 +710,6 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
       <h1>Seu escritório não cresce mais do que você consegue conferir.</h1>
       <p class="lead">Todo contrato passa por você antes de sair. Não é desconfiança da equipe — é que os detalhes é que pegam, e quando escapa um, quem recebe a ligação do cliente é você. Enquanto for assim, o tamanho do escritório é o tamanho da sua agenda.</p>
       <p class="lead lead-virada">Existe um jeito de deixar de ser a última conferência do próprio escritório sem baixar em nada o padrão que você levou anos construindo.</p>
-      <p class="lead lead-sec">O ATO tira o detalhe da mão humana. Sua equipe produz, o sistema confere antes de o documento sair, e cada alteração já nasce consolidada — com a redação do contrato daquela empresa, não com um modelo nosso por cima.</p>
-
       <div class="hero-ctas">
         <a class="btn btn-gold" href="https://app.useato.com.br/cadastro" data-cta="trial" data-origem="hero">Testar grátis por 14 dias</a>
         <a class="btn btn-ghost" href="#como-funciona">Ver como funciona</a>
@@ -790,6 +797,22 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ O QUE O ATO FAZ ═══════════════════════════════════════════════════════
+     ⚠️ ESTE PARÁGRAFO ESTAVA NA DOBRA e saiu de lá por MEDIÇÃO, não por gosto: com ele dentro, o
+     botão do hero nascia em y=842 num iPhone 12/13/14 (844px) e mais abaixo ainda no navegador do
+     Instagram, que come ~140px com a barra do app. Fora da dobra, o botão sobe para dentro da
+     primeira tela — e o parágrafo continua sendo a primeira coisa que a pessoa lê ao rolar.
+     A dobra passou a ter quatro tempos e nenhum a mais: problema, virada, ação. -->
+<section class="produto">
+  <div class="wrap">
+    <p class="produto-texto">
+      O ATO tira o detalhe da mão humana. Sua equipe produz, o sistema confere antes de o documento
+      sair, e cada alteração já nasce consolidada — com a redação do contrato daquela empresa, não
+      com um modelo nosso por cima.
+    </p>
   </div>
 </section>
 
