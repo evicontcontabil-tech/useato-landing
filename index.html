@@ -1245,6 +1245,12 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
   if (capa) fachada.style.backgroundImage = 'url("' + capa + '")';
 
   fachada.addEventListener('click', function () {
+    /* ASSISTIU — o unico sinal que temos de que alguem deu play. A conta do Vimeo e FREE, entao o
+       painel dele nao devolve retencao nem separa play na landing de play no vimeo.com; sem este
+       evento, "quantas pessoas assistem" nao tem resposta de lugar nenhum.
+       `typeof fbq` conferido como nos demais: com bloqueador, o fbevents.js nao carrega, e um
+       erro aqui impediria o video de tocar — o rastreamento derrubando o que veio medir. */
+    if (typeof fbq === 'function') fbq('trackCustom', 'AssistiuVideo');
     var f = document.createElement('iframe');
     /* dnt=1: o equivalente Vimeo do youtube-nocookie — sem cookie de rastreamento.
        title/byline/portrait em 0: o player não estampa o título nem o autor por cima do vídeo. */
@@ -1317,6 +1323,21 @@ src="https://www.facebook.com/tr?id=1371454197947332&ev=PageView&noscript=1"
          dela, e vale em qualquer resolução. */
     }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
     obs.observe(alvo);
+  }
+
+  /* ViuVideo — a secao do video aparece na tela. E o DENOMINADOR do play: sem ele, "10 pessoas
+     assistiram" nao diz se 10 de 12 ou 10 de 400. Mesmos parametros do ViewPrecos, pelo motivo
+     registrado logo acima — `threshold: 0.5` e matematicamente incapaz de disparar num celular. */
+  var secVideo = document.getElementById('video');
+  if (secVideo && 'IntersectionObserver' in window) {
+    var obsV = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        if (typeof fbq === 'function') fbq('trackCustom', 'ViuVideo');
+        obsV.disconnect();
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
+    obsV.observe(secVideo);
   }
 
   /* IniciouCadastro — clique em qualquer CTA de teste.
